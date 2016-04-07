@@ -104,4 +104,32 @@ angular.module('starter.controllers', [])
   })*/
 
 
+<<<<<<< HEAD
+=======
+.controller('BrowseCtrl', function($scope, $http, $templateCache) {
+    var dataObj = {
+    action: "incaneva_events",
+    blog: "1,6,7,8",
+    limit: 5
+  };
+
+  $http({
+    method: "POST",
+    url: "http://incaneva.it/wp-admin/admin-ajax.php",
+    data: dataObj,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+    transformRequest: function(obj) {
+      var str = [];
+      for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      return str.join("&");
+    }
+  }).success(function (data) {
+    console.log(data);
+  }).error(function(response){
+    console.log(data);
+  }).then(function(response){
+    $scope.documents = response.data.data;
+  })
+>>>>>>> 24dfb866bdaa89353ad331c825440081e5b47187
 });
