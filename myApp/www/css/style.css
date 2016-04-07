@@ -18,3 +18,7 @@ ion-view{
 .sectionName{
     font-size: 25pt;
 }
+
+.article{
+    background-position: center;
+}

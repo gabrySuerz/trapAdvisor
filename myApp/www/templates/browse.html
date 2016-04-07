@@ -1,8 +1,8 @@
 <ion-view view-title="Next Events">
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat="x in documents" href="#/app/playlists/{{playlist.id}}">
-                <div class="list card row responsive-sm">
+            <ion-item ng-repeat="x in documents">
+                <div class="list card article" href="#/app/playlists/{{x.ID}}">
                     <div class="item item-avatar">
                         <h3>{{x.blogname}}</h3>
 
@@ -11,7 +11,7 @@
                     <div class="item item-body">
                         <img class="full-image" src="{{x.post_thumbnail}}">
 
-                        <p>{{x.post_excerpt}}...</p>
+                        <p>{{x.post_excerpt | myFilter}}</p>
                     </div>
                 </div>
             </ion-item>
