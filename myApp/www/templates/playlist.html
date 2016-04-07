@@ -1,5 +1,18 @@
 <ion-view view-title="Playlist">
   <ion-content>
-    <h1>Playlist</h1>
+    <ion-item >
+      <div class="list card row responsive-sm">
+        <div class="item item-avatar">
+          <h1>{{documents[index].blogname}}</h1>
+
+          <p>{{documents[index].evcal_start_date}}</p>
+        </div>
+        <div class="item item-body">
+          <img class="full-image" src="{{documents[index].post_thumbnail}}">
+
+          <p>{{documents[index].post_content}}</p>
+        </div>
+      </div>
+    </ion-item>
   </ion-content>
 </ion-view>

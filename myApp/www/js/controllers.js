@@ -69,38 +69,39 @@ angular.module('starter.controllers', [])
     $scope.documents = response.data.data;
   })
 
-  /*
-  $scope.playlists = [
-    { title: 'Piero', id: 1 , text: 'Ciao'},
-    { title: 'Chill', id: 2 , text: 'Come va?'},
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-  */
-
-
-
-    /*
-    var dataBelle = {
-      json: JSON.stringify({
-        action: "incaneva_events",
-        blog: "1,6,7,8",
-        old: true,
-        limit: 1
-      })
-    }
-
-    $http.post("http://incaneva.it/wp-admin/admin-ajax.php", dataBelle).success(function(data, status) {
-      $scope.hello = data;
-      alert("Bravo")
-    }).error(function(){
-      alert("Errore")
-    })
-*/
-
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PlaylistCtrl', function($scope,$stateParams,$http,documents) {
+
+  var index=dataAccess.getById($stateParams.id);
+  alert(documents);
+
+
+ /* var dataObj = {
+    action: "incaneva_events",
+    blog: "1,6,7,8",
+    old: true,
+    limit: 10
+  };
+
+  $http({
+    method: "POST",
+    url: "http://incaneva.it/wp-admin/admin-ajax.php",
+    data: dataObj,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+    transformRequest: function(obj) {
+      var str = [];
+      for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      return str.join("&");
+    }
+  }).success(function (data) {
+    console.log(data);
+  }).error(function(response){
+    console.log(data);
+  }).then(function(response){
+    $scope.documents = response.data.data;
+  })*/
+
+
 });
