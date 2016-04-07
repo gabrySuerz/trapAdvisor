@@ -71,10 +71,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PlaylistCtrl', function($scope,$stateParams,$http,documents) {
+.controller('PlaylistCtrl', function($scope,$stateParams,$http) {
 
-  var index=dataAccess.getById($stateParams.id);
-  alert(documents);
+ // var index=dataAccess.getById($stateParams.id);
+ // alert(documents);
 
 
  /* var dataObj = {
@@ -136,8 +136,10 @@ angular.module('starter.controllers', [])
     var dataObj = {
     action: "incaneva_events",
     blog: "1,6,7,8",
-    limit: 5
+    limit: 20
   };
+  
+  $scope.category=$stateParams.category;
 
   $http({
     method: "POST",
@@ -151,17 +153,18 @@ angular.module('starter.controllers', [])
       return str.join("&");
     }
   }).success(function (data) {
-    console.log(data);
+     //console.log(data);
   }).error(function(response){
     console.log(data);
   }).then(function(response){
     $scope.documents = response.data.data;
   })
-  var cat;
+  
   for(var x in $scope.documents){
-      if(x.category.contains('natura')){
-          cat.push(x);
+      if(x.category.contains($scope.category)){
+          console.log(x.category)
+          $scope.cat.push(x);
       }
   }
-  $scope.documents=cat;
+  $scope.documents=$scope.cat;
 });
