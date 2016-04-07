@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+ion-view{
+    background-image:url("http://incaneva.it/wp-content/uploads/2013/05/fondo_3.gif");
+}
+
+.title .title-center .header-item{
+    height: 100px;
+}
