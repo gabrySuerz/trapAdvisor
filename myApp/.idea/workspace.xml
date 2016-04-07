@@ -55,8 +55,11 @@
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.27088037">
-              <caret line="75" column="46" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="46" />
-              <folding />
+              <caret line="103" column="6" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="46" />
+              <folding>
+                <marker date="1460025508122" expanded="true" signature="2018:3535" placeholder="{...}" />
+                <marker date="1460025508122" expanded="true" signature="2093:2751" placeholder="/*...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -306,8 +309,11 @@
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27088037">
-          <caret line="75" column="46" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="46" />
-          <folding />
+          <caret line="103" column="6" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="46" />
+          <folding>
+            <marker date="1460025508122" expanded="true" signature="2018:3535" placeholder="{...}" />
+            <marker date="1460025508122" expanded="true" signature="2093:2751" placeholder="/*...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
