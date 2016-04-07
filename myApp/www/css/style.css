@@ -6,3 +6,15 @@ ion-view{
 .title .title-center .header-item{
     height: 100px;
 }
+
+.carta{
+    height:200px;
+    background-repeat: no-repeat; 
+    background-position: center;
+    color: white;
+    text-align: center;
+}
+
+.sectionName{
+    font-size: 25pt;
+}
