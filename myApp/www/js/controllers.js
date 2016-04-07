@@ -102,12 +102,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PlaylistCtrl', function($scope, $http, $templateCache) {
+.controller('BrowseCtrl', function($scope, $http, $templateCache) {
     var dataObj = {
     action: "incaneva_events",
     blog: "1,6,7,8",
-    old: true,
-    limit: 10
+    limit: 5
   };
 
   $http({
