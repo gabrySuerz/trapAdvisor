@@ -130,4 +130,38 @@ angular.module('starter.controllers', [])
   }).then(function(response){
     $scope.documents = response.data.data;
   })
+})
+  
+.controller('LoginCtrl', function($scope, $http, $templateCache,$stateParams) {
+    var dataObj = {
+    action: "incaneva_events",
+    blog: "1,6,7,8",
+    limit: 5
+  };
+
+  $http({
+    method: "POST",
+    url: "http://incaneva.it/wp-admin/admin-ajax.php",
+    data: dataObj,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+    transformRequest: function(obj) {
+      var str = [];
+      for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      return str.join("&");
+    }
+  }).success(function (data) {
+    console.log(data);
+  }).error(function(response){
+    console.log(data);
+  }).then(function(response){
+    $scope.documents = response.data.data;
+  })
+  var cat;
+  for(var x in $scope.documents){
+      if(x.category.contains('natura')){
+          cat.push(x);
+      }
+  }
+  $scope.documents=cat;
 });
