@@ -46,7 +46,6 @@ angular.module('starter.controllers', [])
   var dataObj = {
     action: "incaneva_events",
     blog: "1,6,7,8",
-    old: true,
     limit: 10
   };
 

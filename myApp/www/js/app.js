@@ -94,6 +94,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
 }).filter('under', function() {
     return function(x) {
-        return (!!x) ? ;
+        return (!!x) && (x.indexOf("_")) ? x.replace("_", " e ") : '';
     }
 });
