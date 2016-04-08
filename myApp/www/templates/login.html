@@ -1,19 +1,21 @@
-<ion-view view-title="Browse by categories">
+<ion-view view-title="{{category | capitalize}}">
     <ion-content>
         <ion-list>
             <ion-item ng-repeat="x in documents">
-                <div class="list card article" href="#/app/playlists/{{x.ID}}">
-                    <div class="item item-avatar">
-                        <h3>{{x.blogname}}</h3>
+                <a href="#/app/playlists/{{x.ID}}">
+                    <div class="list card">
+                        <div class="item item-avatar">
+                            <h3>{{x.blogname}}</h3>
 
-                        <p>{{x.evcal_start_date}}</p>
-                    </div>
-                    <div class="item item-body">
-                        <img class="full-image" src="{{x.post_thumbnail}}">
+                            <p>{{x.evcal_start_date}}</p>
+                        </div>
+                        <div class="item item-body">
+                            <img class="full-image" src="{{x.post_thumbnail}}">
 
-                        <p>{{x.post_excerpt | myFilter}}</p>
+                            <p>{{x.post_excerpt | myFilter}}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </ion-item>
         </ion-list>
     </ion-content>

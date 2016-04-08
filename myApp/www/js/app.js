@@ -88,4 +88,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         x=x.substring(0,pos);
         return x;
     }
+}).filter('capitalize', function() {
+    return function(x) {
+        return (!!x) ? x.charAt(0).toUpperCase() + x.substr(1).toLowerCase() : '';
+    }
 });

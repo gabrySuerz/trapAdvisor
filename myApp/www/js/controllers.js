@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
       return str.join("&");
     }
   }).success(function (data) {
-    console.log(data);
+    //console.log(data);
   }).error(function(response){
     console.log(data);
   }).then(function(response){
@@ -124,7 +124,7 @@ angular.module('starter.controllers', [])
       return str.join("&");
     }
   }).success(function (data) {
-    console.log(data);
+    //console.log(data);
   }).error(function(response){
     console.log(data);
   }).then(function(response){

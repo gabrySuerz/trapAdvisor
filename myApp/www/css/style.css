@@ -16,9 +16,9 @@ ion-view{
 }
 
 .sectionName{
-    font-size: 25pt;
+    font-size: 20pt;
 }
 
-.article{
-    background-position: center;
+a{
+    text-decoration: none;
 }
