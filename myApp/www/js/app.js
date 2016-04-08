@@ -92,4 +92,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     return function(x) {
         return (!!x) ? x.charAt(0).toUpperCase() + x.substr(1).toLowerCase() : '';
     }
+}).filter('under', function() {
+    return function(x) {
+        return (!!x) ? ;
+    }
 });
