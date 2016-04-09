@@ -50,7 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    
+
     .state('app.playlists', {
       url: '/playlists',
       views: {
@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.single', {
-        url: '/playlists/:playlistId',
+        url: '/playlists/:id',
         views: {
         'menuContent': {
             templateUrl: 'templates/playlist.html',
@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
         }
     })
-    
+
     .state('app.login', {
       url: '/login/:category',
       views: {
@@ -94,6 +94,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
 }).filter('under', function() {
     return function(x) {
-        return (!!x) ? ;
+        //return (!!x) ? ;
     }
 });

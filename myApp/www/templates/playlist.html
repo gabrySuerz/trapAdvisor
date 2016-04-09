@@ -3,14 +3,14 @@
     <ion-item >
       <div class="list card row responsive-sm">
         <div class="item item-avatar">
-          <h1>{{documents[index].blogname}}</h1>
+          <h1>{{post.blogname}}</h1>
 
-          <p>{{documents[index].evcal_start_date}}</p>
+          <p>{{post.evcal_start_date}}</p>
         </div>
         <div class="item item-body">
-          <img class="full-image" src="{{documents[index].post_thumbnail}}">
+          <img class="full-image" src="{{post.post_thumbnail}}">
 
-          <p>{{documents[index].post_content}}</p>
+          <p ng-bind-html="post.post_content"></p>
         </div>
       </div>
     </ion-item>

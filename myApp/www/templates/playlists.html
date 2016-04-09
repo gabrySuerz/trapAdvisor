@@ -2,7 +2,8 @@
     <ion-content>
         <ion-list>
             <ion-item ng-repeat="x in documents">
-                <a href="#/app/playlists/{{x.ID}}">
+                <!--<a href="#/app/playlists/{{x.ID}}">-->
+              <a href="#/app/playlists/{{$index}}">
                     <div class="list card">
                         <div class="item item-avatar">
                             <h3>{{x.blogname}}</h3>
