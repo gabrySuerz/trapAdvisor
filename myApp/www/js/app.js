@@ -97,3 +97,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         return (!!x) && (x.indexOf("_")) ? x.replace("_", " e ") : '';
     }
 });
+
+function dati($http, dataObj){
+    $http({
+    method: "POST",
+    url: "http://incaneva.it/wp-admin/admin-ajax.php",
+    data: dataObj,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+    transformRequest: function(obj) {
+      var str = [];
+      for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      return str.join("&");
+    }
+  }).success(function (response) {
+    var documents = response.data.data;
+    localStorage.setItem("posts", angular.toJson(documents))
+    return documents
+  }).error(function(response){
+    return "no post found"
+  }).then(function (response) {
+      
+  })
+}
