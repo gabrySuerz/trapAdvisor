@@ -107,7 +107,8 @@ angular.module('starter.controllers', [])
   })
     .then(function(response){
 
-      //TODO: Parse post_content
+      /*TODO: Parse post_content
+       */
       $scope.postContent=$scope.post.post_content;
       console.log( $scope.postContent );
 
