@@ -110,13 +110,13 @@ function dati($http, dataObj){
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     }
-  }).success(function (response) {
-    var documents = response.data.data;
-    localStorage.setItem("posts", angular.toJson(documents))
-    return documents
+  }).success(function (data) {
+      
   }).error(function(response){
     return "no post found"
   }).then(function (response) {
-      
+    var documents = response.data.data;
+    localStorage.setItem("posts", angular.toJson(documents))
+    return documents;
   })
 }

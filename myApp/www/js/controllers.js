@@ -60,13 +60,12 @@ angular.module('starter.controllers', [])
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     }
-  }).success(function (response) {
-    //$scope.documents = response.data.data;
+  }).success(function (data) {
+    //console.log(data);
   }).error(function(response){
     console.log(data);
   }).then(function(response){
-    
-    localStorage.setItem("posts",$scope.documents)
+    $scope.documents = response.data.data;
   })
 
 })
@@ -128,9 +127,10 @@ angular.module('starter.controllers', [])
     blog: "1,6,7,8",
     limit: 5
   };
-
-  console.log(dati($http, dataObj))
   
+  console.log(dati($http,dataObj))
+  console.log(localStorage.getItem("posts"))
+
   $http({
     method: "POST",
     url: "http://incaneva.it/wp-admin/admin-ajax.php",
@@ -142,16 +142,13 @@ angular.module('starter.controllers', [])
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     }
-  }).success(function (response) {
-    var documents = response.data.data;
-    localStorage.setItem("posts", angular.toJson(documents))
-    return documents
+  }).success(function (data) {
+    //console.log(data);
   }).error(function(response){
-    return "no post found"
-  }).then(function (response) {
-      
+    console.log(data);
+  }).then(function(response){
+    $scope.documents = response.data.data;
   })
-  
 })
 
 .controller('LoginCtrl', function($scope, $http, $templateCache,$stateParams) {
@@ -183,12 +180,10 @@ angular.module('starter.controllers', [])
   })
 
   for(var x in $scope.documents){
-      if(x.event_type.contains($scope.category)){
+      if(x.category.contains($scope.category)){
           console.log(x.category)
           $scope.cat.push(x);
       }
   }
   $scope.documents=$scope.cat;
 });
-
-
