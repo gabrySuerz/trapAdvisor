@@ -153,6 +153,7 @@ angular.module('starter.controllers', [])
 
   $scope.category=$stateParams.category;
   $scope.postsByCat = [];
+  $scope.isLoading=true;
 
 
   var dataObj = {
@@ -190,9 +191,11 @@ angular.module('starter.controllers', [])
       }
       $scope.postsByCat=posts;
       console.log($scope.postsByCat.length);
+      $scope.isLoading=false;
     })
     .error(function(response){
       console.log(data);
+      $scope.isLoading=false;
     })
 
 });

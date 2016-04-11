@@ -1,13 +1,13 @@
 <ion-view view-title="All events">
     <ion-content>
         <ion-list>
-          <--! Per evitare di buggare tutto -->
+          <!-- Per evitare di buggare tutto -->
           <div ng-if="documents.length==0" class="list card">
             <div  class="col-70 col-offset-10">
               <h3>Sembra che nessun evento sia al momento disponibile.</h3>
             </div>
           </div>
-          
+
             <ion-item ng-repeat="x in documents">
                 <!--<a href="#/app/playlists/{{x.ID}}">-->
               <a href="#/app/playlists/{{$index}}">
@@ -26,5 +26,6 @@
                 </a>
             </ion-item>
         </ion-list>
+      <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
