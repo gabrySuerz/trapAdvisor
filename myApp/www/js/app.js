@@ -94,10 +94,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
 }).filter('under', function() {
     return function(x) {
-<<<<<<< HEAD
         return (!!x) && (x.indexOf("_")) ? x.replace("_", " e ") : '';
-=======
-        //return (!!x) ? ;
->>>>>>> origin/master
     }
 });
