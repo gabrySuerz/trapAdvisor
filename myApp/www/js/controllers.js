@@ -107,13 +107,14 @@ angular.module('starter.controllers', [])
     .then(function(response){
 
       /*TODO: Parse post_content
-       */
+
       $scope.postContent=$scope.post.post_content;
       console.log( $scope.postContent );
 
       var tmpStr=$scope.postContent;
       $scope.title=tmpStr.substring($scope.postContent.indexOf("<strong>")+8,tmpStr.indexOf("</strong>"));
       console.log( $scope.title );
+      */
   })
 
 
@@ -149,13 +150,17 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope, $http, $templateCache,$stateParams) {
-    var dataObj = {
-    action: "incaneva_events",
-    blog: "1,6,7,8",
-    limit: 20
-  };
 
   $scope.category=$stateParams.category;
+  $scope.postsByCat = [];
+
+
+  var dataObj = {
+    action: "incaneva_events",
+    blog: "1,6,7,8",
+    old: true,
+    limit: 20
+  };
 
   $http({
     method: "POST",
@@ -168,19 +173,26 @@ angular.module('starter.controllers', [])
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     }
-  }).success(function (data) {
-     //console.log(data);
-  }).error(function(response){
-    console.log(data);
-  }).then(function(response){
-    $scope.documents = response.data.data;
   })
+    .success(function (data) {
+      //Get all post in this category
+      $scope.post=data.data;
+      console.log($scope.post);
+      console.log("CATEGORY: " +  $scope.category);
 
-  for(var x in $scope.documents){
-      if(x.category.contains($scope.category)){
-          console.log(x.category)
-          $scope.cat.push(x);
+      var posts=[];
+
+      for(var i=0; i<$scope.post.length; i++) {
+       console.log($scope.post[i].event_type[1]);
+       if($scope.post[i].event_type[1]==$scope.category){
+         posts.push($scope.post[i]);
+        }
       }
-  }
-  $scope.documents=$scope.cat;
+      $scope.postsByCat=posts;
+      console.log($scope.postsByCat.length);
+    })
+    .error(function(response){
+      console.log(data);
+    })
+
 });
