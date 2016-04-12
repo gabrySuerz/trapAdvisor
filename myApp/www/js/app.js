@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.single', {
+    .state('app.playlist', {
         url: '/playlists/:id',
         views: {
         'menuContent': {
@@ -95,4 +95,4 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     return function(x) {
         return (!!x) && (x.indexOf("_")) ? x.replace("_", " e ") : '';
     }
-});
+});   

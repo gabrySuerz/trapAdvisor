@@ -13,11 +13,12 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope, $http, $templateCache) {
     $scope.isLoading=true;
+    var numpost = 10;
     
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
-        limit: 10
+        limit: numpost
     };
     
     $http({
@@ -34,21 +35,60 @@ angular.module('starter.controllers', [])
     }).success(function (data) {
         
     }).error(function(response){
-        $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+        $scope.posts = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
         $scope.isLoading=false;
     }).then(function (response) {
-        $scope.documents = response.data.data;
-        console.log($scope.documents)
-        localStorage.setItem("posts", angular.toJson($scope.documents))
+        $scope.posts = response.data.data;
+        localStorage.setItem("posts", angular.toJson($scope.posts))
         $scope.isLoading=false;
     })
-         
+    
+    
+    $scope.loadMore=function(){
+        isLoading = true
+        var dataObj = {
+            action: "incaneva_events",
+            blog: "1,6,7,8",
+            offset: numpost,
+            limit: 10
+        };
+        numpost = numpost * 2
+        
+        $http({
+            method: "POST",
+            url: "http://incaneva.it/wp-admin/admin-ajax.php",
+            data: dataObj,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+            }
+        }).success(function (data) {
+            
+        }).error(function(response){
+            $scope.posts += [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+            $scope.isLoading=false;
+        }).then(function (response) {
+            for(var i=0;i<response.data.data.length;i++){
+            $scope.posts.push(response.data.data[i])}
+            console.log($scope.posts)
+            localStorage.setItem("posts", angular.toJson($scope.posts))
+            $scope.isLoading=false;
+        })
+    }
+     
 })
 
 .controller('PlaylistCtrl', function($scope,$stateParams,$http) {
     $scope.index = $stateParams.id;
     var i = $scope.index;
-    var allposts = JSON.parse(localStorage.getItem("posts"))
+    var allposts
+    if($stateParams.type=='cat')
+        allposts = JSON.parse(localStorage.getItem("categorypost"))
+    else
+        allposts = JSON.parse(localStorage.getItem("posts"))
     $scope.post = allposts[i]
 })
 
@@ -74,11 +114,11 @@ angular.module('starter.controllers', [])
         }
     }).success(function (data) {
     }).error(function(response){
-        $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+        $scope.posts = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
         $scope.isLoading=false;
     }).then(function (response) {
-        $scope.documents = response.data.data;
-        localStorage.setItem("posts", angular.toJson($scope.documents))
+        $scope.posts = response.data.data;
+        localStorage.setItem("posts", angular.toJson($scope.posts))
         $scope.isLoading=false;
     })
 
@@ -114,12 +154,12 @@ angular.module('starter.controllers', [])
     }).then(function (response) {
         $scope.posts = response.data.data;
         localStorage.setItem("posts", angular.toJson($scope.posts))
-        for(var i=0; i<$scope.posts.length(); i++) {
-            if($scope.post[i].event_type[1]==$scope.category){
-                $scope.postsByCat.push($scope.post[i]);
+        for(var i=0; i<$scope.posts.length; i++) {
+            if($scope.posts[i].event_type[1]==$scope.category){
+                $scope.postsByCat.push($scope.posts[i]);
             }
         }
+        localStorage.setItem("categorypost",$scope.postsByCat)
         $scope.isLoading=false;
     })
-    
 });
