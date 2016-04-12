@@ -12,6 +12,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope, $http, $templateCache) {
+    $scope.isLoading=true;
+    
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
@@ -30,11 +32,15 @@ angular.module('starter.controllers', [])
         return str.join("&");
         }
     }).success(function (data) {
-        $scope.documents = response.data.data;
-        localStorage.setItem("posts", angular.toJson($scope.documents))
+        
     }).error(function(response){
         $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+        $scope.isLoading=false;
     }).then(function (response) {
+        $scope.documents = response.data.data;
+        console.log($scope.documents)
+        localStorage.setItem("posts", angular.toJson($scope.documents))
+        $scope.isLoading=false;
     })
          
 })
@@ -47,6 +53,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('BrowseCtrl', function($scope, $http, $templateCache) {
+    $scope.isLoading=true;
+    
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
@@ -65,11 +73,13 @@ angular.module('starter.controllers', [])
         return str.join("&");
         }
     }).success(function (data) {
-        $scope.documents = response.data.data;
-        localStorage.setItem("posts", angular.toJson($scope.documents))
     }).error(function(response){
         $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+        $scope.isLoading=false;
     }).then(function (response) {
+        $scope.documents = response.data.data;
+        localStorage.setItem("posts", angular.toJson($scope.documents))
+        $scope.isLoading=false;
     })
 
 })
@@ -98,21 +108,18 @@ angular.module('starter.controllers', [])
         return str.join("&");
         }
     }).success(function (data) {
-        $scope.posts = response.data.data;
-        localStorage.setItem("posts", angular.toJson($scope.posts))
-        for(var i=0; i<$scope.post.length; i++) {
-        if($scope.post[i].event_type[1]==$scope.category){
-                posts.push($scope.post[i]);
-            }
-        }
-        $scope.postsByCat=posts;
-        console.log($scope.postsByCat.length);
-        $scope.isLoading=false;
-        }).error(function(response){
-        $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+    }).error(function(response){
+        $scope.postsByCat = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
         $scope.isLoading=false;
     }).then(function (response) {
-
+        $scope.posts = response.data.data;
+        localStorage.setItem("posts", angular.toJson($scope.posts))
+        for(var i=0; i<$scope.posts.length(); i++) {
+            if($scope.post[i].event_type[1]==$scope.category){
+                $scope.postsByCat.push($scope.post[i]);
+            }
+        }
+        $scope.isLoading=false;
     })
     
 });

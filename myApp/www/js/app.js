@@ -80,7 +80,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     });
-  $urlRouterProvider.otherwise('/app/browse');
+    $urlRouterProvider.otherwise('/app/browse');
 }).filter('myFilter', function() {
     return function(x) {
         var pos = x.search('\r');
