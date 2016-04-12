@@ -9,68 +9,44 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
 .controller('PlaylistsCtrl', function($scope, $http, $templateCache) {
+    $scope.isLoading=true;
 
-  var dataObj = {
-    action: "incaneva_events",
-    blog: "1,6,7,8",
-    limit: 10
-  };
+    var dataObj = {
+        action: "incaneva_events",
+        blog: "1,6,7,8",
+        limit: 10
+    };
 
-  $http({
-    method: "POST",
-    url: "http://incaneva.it/wp-admin/admin-ajax.php",
-    data: dataObj,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-    transformRequest: function(obj) {
-      var str = [];
-      for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-      return str.join("&");
-    }
-  }).success(function (data) {
-    //console.log(data);
-  }).error(function(response){
-    console.log(data);
-  }).then(function(response){
-    $scope.documents = response.data.data;
-  })
+    $http({
+        method: "POST",
+        url: "http://incaneva.it/wp-admin/admin-ajax.php",
+        data: dataObj,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+        var str = [];
+        for(var p in obj)
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+        }
+    }).success(function (data) {
+
+    }).error(function(response){
+        $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+        $scope.isLoading=false;
+    }).then(function (response) {
+        $scope.documents = response.data.data;
+        console.log($scope.documents)
+        localStorage.setItem("posts", angular.toJson($scope.documents))
+        $scope.isLoading=false;
+    })
 
 })
 
 .controller('PlaylistCtrl', function($scope,$stateParams,$http) {
+<<<<<<< HEAD
 
   //Get the position of the required obj
   $scope.index = $stateParams.id;//dataAccess.getById($stateParams.id);
@@ -116,41 +92,50 @@ angular.module('starter.controllers', [])
        console.log( $scope.title );
        */
     })
+=======
+    $scope.index = $stateParams.id;
+    var i = $scope.index;
+    var allposts = JSON.parse(localStorage.getItem("posts"))
+    $scope.post = allposts[i]
+>>>>>>> origin/trapAdvisor_for_Ionic
 })
 
 .controller('BrowseCtrl', function($scope, $http, $templateCache) {
-    var dataObj = {
-    action: "incaneva_events",
-    blog: "1,6,7,8",
-    limit: 5
-  };
+    $scope.isLoading=true;
 
-  $http({
-    method: "POST",
-    url: "http://incaneva.it/wp-admin/admin-ajax.php",
-    data: dataObj,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-    transformRequest: function(obj) {
-      var str = [];
-      for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-      return str.join("&");
-    }
-  }).success(function (data) {
-    //console.log(data);
-  }).error(function(response){
-    console.log(data);
-  }).then(function(response){
-    $scope.documents = response.data.data;
-  })
+    var dataObj = {
+        action: "incaneva_events",
+        blog: "1,6,7,8",
+        limit: 5
+    };
+
+    $http({
+        method: "POST",
+        url: "http://incaneva.it/wp-admin/admin-ajax.php",
+        data: dataObj,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+        var str = [];
+        for(var p in obj)
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+        }
+    }).success(function (data) {
+    }).error(function(response){
+        $scope.documents = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+        $scope.isLoading=false;
+    }).then(function (response) {
+        $scope.documents = response.data.data;
+        localStorage.setItem("posts", angular.toJson($scope.documents))
+        $scope.isLoading=false;
+    })
+
 })
 
 .controller('LoginCtrl', function($scope, $http, $templateCache,$stateParams) {
-
-  $scope.category=$stateParams.category;
-  $scope.postsByCat = [];
-  $scope.isLoading=true;
-
+    $scope.category = $stateParams.category;
+    $scope.postsByCat = [];
+    $scope.isLoading=true;
 
   var dataObj = {
     action: "incaneva_events",
@@ -170,38 +155,22 @@ angular.module('starter.controllers', [])
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     }
-  })
-    .success(function (data) {
-      //Get all post in this category
-      $scope.post=data.data;
-      console.log($scope.post);
-      console.log("CATEGORY: " +  $scope.category);
-
-      var posts=[];
-
-      for(var i=0; i<$scope.post.length; i++) {
-       //console.log($scope.post[i].event_type[1]);
-       if($scope.post[i].event_type[1]==$scope.category){
-         $scope.postsByCat.push($scope.post[i]);
-        }
+  }).success(function (data) {
+  }).error(function(response){
+    $scope.postsByCat = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+    $scope.isLoading=false;
+  }).then(function (response) {
+    $scope.posts = response.data.data;
+    localStorage.setItem("posts", angular.toJson($scope.posts))
+    for(var i=0; i<$scope.posts.length(); i++) {
+      if($scope.post[i].event_type[1]==$scope.category){
+        $scope.postsByCat.push($scope.post[i]);
       }
-      /*
-      console.log($scope.postsByCat.length);
-      console.log($scope.postsByCat[1]);
-      */
-
-      localStorage.clear();
-      localStorage.setItem("postbycat",JSON.stringify($scope.postsByCat));
-
-      console.log("Oggetto salvato in localStoragge= "+JSON.parse(localStorage.getItem("postbycat")));
-
-      $scope.isLoading=false;
-    })
-    .error(function(response){
-      console.log(data);
-      $scope.isLoading=false;
-    })
-
+    }
+    localStorage.clear();
+    localStorage.setItem("postbycat",JSON.stringify($scope.postsByCat));
+    $scope.isLoading=false;
+  })
 })
 
 
@@ -219,5 +188,3 @@ angular.module('starter.controllers', [])
     console.log($scope.post);
 
   });
-
-
