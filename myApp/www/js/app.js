@@ -98,25 +98,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
 });
 
-function dati($http, dataObj){
+function dati($http, dataObj, mydata){
+    localStorage.clear()
     $http({
-    method: "POST",
-    url: "http://incaneva.it/wp-admin/admin-ajax.php",
-    data: dataObj,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-    transformRequest: function(obj) {
-      var str = [];
-      for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-      return str.join("&");
-    }
-  }).success(function (data) {
-      
-  }).error(function(response){
-    return "no post found"
-  }).then(function (response) {
-    var documents = response.data.data;
-    localStorage.setItem("posts", angular.toJson(documents))
-    return documents;
-  })
+        method: "POST",
+        url: "http://incaneva.it/wp-admin/admin-ajax.php",
+        data: dataObj,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+        var str = [];
+        for(var p in obj)
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+        }
+    }).success(function (data) {
+        
+    }).error(function(response){
+        return "no post found"
+    }).then(function (response) {
+        mydata = response.data.data;
+        localStorage.setItem("posts", angular.toJson(mydata))
+        return mydata;
+    })
 }

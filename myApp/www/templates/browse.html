@@ -1,25 +1,25 @@
 <ion-view view-title="Next Events">
     <ion-content>
         <ion-list>
-          <--! Per evitare di buggare tutto -->
+          <!-- Per evitare di buggare tutto -->
           <div ng-if="documents.length==0" class="list card">
-            <div  class="col-70 col-offset-10">
-              <h3>Sembra che nessun evento sia al momento disponibile.</h3>
-            </div>
+                <div  class="col-70 col-offset-10">
+                    <h3>Sembra che nessun evento sia al momento disponibile.</h3>
+                </div>
           </div>
 
             <ion-item ng-repeat="x in documents">
-                <a href="#/app/playlists/{{x.ID}}">
+                <a href="#/app/playlists/{{$index}}">
                     <div class="list card">
                         <div class="item item-avatar">
                             <h3>{{x.blogname}}</h3>
-
                             <p>{{x.evcal_start_date}}</p>
                         </div>
-                        <div class="item item-body">
-                            <img class="full-image" src="{{x.post_thumbnail}}">
-
-                            <p>{{x.post_excerpt | myFilter}}</p>
+                        <div ng-if="documents.blogname != 'Nessun post trovato'">
+                            <div class="item item-body">
+                                <img class="full-image" src="{{x.post_thumbnail}}">
+                                <p>{{x.post_excerpt | myFilter}}</p>
+                            </div>
                         </div>
                     </div>
                 </a>
