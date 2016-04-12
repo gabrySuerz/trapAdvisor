@@ -1,0 +1,18 @@
+<ion-view view-title={{post.evcal_start_date}}>
+  <ion-content>
+    <ion-item>
+      <div class="list card row responsive-sm">
+        <div class="item item-avatar">
+          <h1>{{post.blogname}}</h1>
+
+          <p>{{post.evcal_start_date}}</p>
+        </div>
+        <div class="item item-body">
+          <img class="full-image" src="{{post.post_thumbnail}}">
+
+          <p ng-bind-html="post.post_content"></p>
+        </div>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>
