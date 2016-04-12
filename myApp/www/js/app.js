@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.playlist', {
+    .state('app.single', {
         url: '/playlists/:id',
         views: {
         'menuContent': {
@@ -69,6 +69,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             controller: 'PlaylistCtrl'
         }
         }
+    })
+
+    .state('app.details_by_category', {
+      url: '/details_by_category/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/details_by_category.html',
+          controller: 'DetailsByCategoryCtrl'
+        }
+      }
     })
 
     .state('app.login', {
@@ -79,6 +89,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'LoginCtrl'
         }
       }
+
+
     });
     $urlRouterProvider.otherwise('/app/browse');
 }).filter('myFilter', function() {

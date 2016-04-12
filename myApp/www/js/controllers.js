@@ -18,6 +18,7 @@ angular.module('starter.controllers', [])
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
+        old: true,
         limit: numpost
     };
     
@@ -39,6 +40,7 @@ angular.module('starter.controllers', [])
         $scope.isLoading=false;
     }).then(function (response) {
         $scope.posts = response.data.data;
+        localStorage.clear()
         localStorage.setItem("posts", angular.toJson($scope.posts))
         $scope.isLoading=false;
     })
@@ -68,12 +70,13 @@ angular.module('starter.controllers', [])
         }).success(function (data) {
             
         }).error(function(response){
-            $scope.posts += [{ blogname: "Nessun post trovato", post_excerpt: ""}]
+            $scope.posts[$scope.posts.length + 1].push({ blogname: "Nessun post trovato", post_excerpt: ""})
             $scope.isLoading=false;
         }).then(function (response) {
             for(var i=0;i<response.data.data.length;i++){
-            $scope.posts.push(response.data.data[i])}
-            console.log($scope.posts)
+                $scope.posts.push(response.data.data[i])
+            }
+            localStorage.clear();
             localStorage.setItem("posts", angular.toJson($scope.posts))
             $scope.isLoading=false;
         })
@@ -84,11 +87,7 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope,$stateParams,$http) {
     $scope.index = $stateParams.id;
     var i = $scope.index;
-    var allposts
-    if($stateParams.type=='cat')
-        allposts = JSON.parse(localStorage.getItem("categorypost"))
-    else
-        allposts = JSON.parse(localStorage.getItem("posts"))
+    var allposts = JSON.parse(localStorage.getItem("posts"))
     $scope.post = allposts[i]
 })
 
@@ -98,6 +97,7 @@ angular.module('starter.controllers', [])
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
+        old: true,
         limit: 5
     };
     
@@ -118,6 +118,7 @@ angular.module('starter.controllers', [])
         $scope.isLoading=false;
     }).then(function (response) {
         $scope.posts = response.data.data;
+        localStorage.clear();
         localStorage.setItem("posts", angular.toJson($scope.posts))
         $scope.isLoading=false;
     })
@@ -128,12 +129,13 @@ angular.module('starter.controllers', [])
     $scope.category = $stateParams.category;
     $scope.postsByCat = [];
     $scope.isLoading=true;
+    var numpost = 20;
 
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
         old: true,
-        limit: 20
+        limit: numpost
     };
     
     $http({
@@ -153,13 +155,20 @@ angular.module('starter.controllers', [])
         $scope.isLoading=false;
     }).then(function (response) {
         $scope.posts = response.data.data;
-        localStorage.setItem("posts", angular.toJson($scope.posts))
         for(var i=0; i<$scope.posts.length; i++) {
             if($scope.posts[i].event_type[1]==$scope.category){
                 $scope.postsByCat.push($scope.posts[i]);
             }
         }
-        localStorage.setItem("categorypost",$scope.postsByCat)
+        localStorage.clear();
+        localStorage.setItem("postbycat", angular.toJson($scope.postsByCat))
         $scope.isLoading=false;
     })
-});
+})
+    
+    .controller('DetailsByCategoryCtrl', function($scope,$stateParams,$http) {
+        $scope.index=$stateParams.id;//dataAccess.getById($stateParams.id);
+        var i=$scope.index;
+        var allPostByCat=JSON.parse(localStorage.getItem("postbycat"));//localStorage.getItem("postbycat");
+        $scope.post=allPostByCat[i];
+  })

@@ -10,8 +10,8 @@
             <ion-item ng-repeat="x in posts">
                 <a href="#/app/playlists/{{$index}}">
                     <div class="list card">
-                        <div class="item item-avatar">
-                            <h3>{{x.blogname}}</h3>
+                        <div class="item">
+                            <h3>{{x.post_title}}</h3>
                             <p>{{x.evcal_start_date}}</p>
                         </div>
                         <div ng-if="posts.blogname != 'Nessun post trovato'">
