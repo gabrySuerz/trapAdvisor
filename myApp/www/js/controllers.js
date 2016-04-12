@@ -46,7 +46,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope,$stateParams,$http) {
-<<<<<<< HEAD
 
   //Get the position of the required obj
   $scope.index = $stateParams.id;//dataAccess.getById($stateParams.id);
@@ -82,22 +81,10 @@ angular.module('starter.controllers', [])
     })
     .then(function (response) {
 
-      /*TODO: Parse post_content
-
-       $scope.postContent=$scope.post.post_content;
-       console.log( $scope.postContent );
-
-       var tmpStr=$scope.postContent;
-       $scope.title=tmpStr.substring($scope.postContent.indexOf("<strong>")+8,tmpStr.indexOf("</strong>"));
-       console.log( $scope.title );
-       */
     })
-=======
-    $scope.index = $stateParams.id;
-    var i = $scope.index;
-    var allposts = JSON.parse(localStorage.getItem("posts"))
-    $scope.post = allposts[i]
->>>>>>> origin/trapAdvisor_for_Ionic
+
+
+
 })
 
 .controller('BrowseCtrl', function($scope, $http, $templateCache) {

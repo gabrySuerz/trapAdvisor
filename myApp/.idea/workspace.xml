@@ -35,8 +35,20 @@
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
-              <folding />
+              <caret line="109" column="3" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+              <folding>
+                <marker date="1460475318851" expanded="true" signature="964:1072" placeholder="{&quot;url&quot;: '/app'...}" />
+                <marker date="1460475318851" expanded="true" signature="1098:1218" placeholder="{&quot;url&quot;: '/search'...}" />
+                <marker date="1460475318851" expanded="true" signature="1131:1214" placeholder="{...}" />
+                <marker date="1460475318851" expanded="true" signature="1244:1414" placeholder="{&quot;url&quot;: '/browse'...}" />
+                <marker date="1460475318851" expanded="true" signature="1281:1408" placeholder="{...}" />
+                <marker date="1460475318851" expanded="true" signature="1306:1400" placeholder="{&quot;templateUrl&quot;: 'templates/browse.html'...}" />
+                <marker date="1460475318851" expanded="true" signature="1445:1624" placeholder="{&quot;url&quot;: '/playlists'...}" />
+                <marker date="1460475318851" expanded="true" signature="1485:1618" placeholder="{...}" />
+                <marker date="1460475318851" expanded="true" signature="1652:1843" placeholder="{&quot;url&quot;: '/playlists/:id'...}" />
+                <marker date="1460475318851" expanded="true" signature="1700:1837" placeholder="{...}" />
+                <marker date="1460475318851" expanded="true" signature="1725:1827" placeholder="{&quot;templateUrl&quot;: 'templates/playlist.html'...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/playlists.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="88" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="88" />
+              <caret line="28" column="14" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -55,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/playlist.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+              <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -65,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-18.961538">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+              <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -74,8 +86,8 @@
       <file leaf-file-name="details_by_category.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/details_by_category.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="-11.115385">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -84,17 +96,9 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31641287">
-              <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-              <folding>
-                <element signature="e#106#1208#0" expanded="false" />
-                <element signature="e#1280#1928#0" expanded="false" />
-                <element signature="e#1995#3142#0" expanded="false" />
-                <element signature="e#3211#3858#0" expanded="false" />
-                <element signature="e#3939#5134#0" expanded="false" />
-                <element signature="e#4052#4138#0" expanded="false" />
-                <element signature="e#4149#4509#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="-1.5956007">
+              <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/search.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -113,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/browse.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="88" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="88" />
+              <caret line="28" column="14" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -380,7 +384,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
-          <folding />
+          <folding>
+            <marker date="1460475318851" expanded="true" signature="964:1072" placeholder="{&quot;url&quot;: '/app'...}" />
+            <marker date="1460475318851" expanded="true" signature="1098:1218" placeholder="{&quot;url&quot;: '/search'...}" />
+            <marker date="1460475318851" expanded="true" signature="1131:1214" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1244:1414" placeholder="{&quot;url&quot;: '/browse'...}" />
+            <marker date="1460475318851" expanded="true" signature="1281:1408" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1306:1400" placeholder="{&quot;templateUrl&quot;: 'templates/browse.html'...}" />
+            <marker date="1460475318851" expanded="true" signature="1445:1624" placeholder="{&quot;url&quot;: '/playlists'...}" />
+            <marker date="1460475318851" expanded="true" signature="1485:1618" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1652:1843" placeholder="{&quot;url&quot;: '/playlists/:id'...}" />
+            <marker date="1460475318851" expanded="true" signature="1700:1837" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1725:1827" placeholder="{&quot;templateUrl&quot;: 'templates/playlist.html'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -412,15 +428,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="155" column="18" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="18" />
-          <folding>
-            <element signature="e#106#1208#0" expanded="false" />
-            <element signature="e#1280#1928#0" expanded="false" />
-            <element signature="e#1995#3142#0" expanded="false" />
-            <element signature="e#3211#3858#0" expanded="false" />
-            <element signature="e#3939#5134#0" expanded="false" />
-            <element signature="e#4052#4138#0" expanded="false" />
-            <element signature="e#4149#4509#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -452,7 +460,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
-          <folding />
+          <folding>
+            <marker date="1460475318851" expanded="true" signature="964:1072" placeholder="{&quot;url&quot;: '/app'...}" />
+            <marker date="1460475318851" expanded="true" signature="1098:1218" placeholder="{&quot;url&quot;: '/search'...}" />
+            <marker date="1460475318851" expanded="true" signature="1131:1214" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1244:1414" placeholder="{&quot;url&quot;: '/browse'...}" />
+            <marker date="1460475318851" expanded="true" signature="1281:1408" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1306:1400" placeholder="{&quot;templateUrl&quot;: 'templates/browse.html'...}" />
+            <marker date="1460475318851" expanded="true" signature="1445:1624" placeholder="{&quot;url&quot;: '/playlists'...}" />
+            <marker date="1460475318851" expanded="true" signature="1485:1618" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1652:1843" placeholder="{&quot;url&quot;: '/playlists/:id'...}" />
+            <marker date="1460475318851" expanded="true" signature="1700:1837" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1725:1827" placeholder="{&quot;templateUrl&quot;: 'templates/playlist.html'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -476,15 +496,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#106#1208#0" expanded="false" />
-            <element signature="e#1280#1928#0" expanded="false" />
-            <element signature="e#1995#3142#0" expanded="false" />
-            <element signature="e#3211#3858#0" expanded="false" />
-            <element signature="e#3939#5134#0" expanded="false" />
-            <element signature="e#4052#4138#0" expanded="false" />
-            <element signature="e#4149#4509#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -516,15 +528,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#106#1208#0" expanded="false" />
-            <element signature="e#1280#1928#0" expanded="false" />
-            <element signature="e#1995#3142#0" expanded="false" />
-            <element signature="e#3211#3858#0" expanded="false" />
-            <element signature="e#3939#5134#0" expanded="false" />
-            <element signature="e#4052#4138#0" expanded="false" />
-            <element signature="e#4149#4509#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -538,15 +542,27 @@
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
-          <folding />
+          <caret line="109" column="3" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+          <folding>
+            <marker date="1460475318851" expanded="true" signature="964:1072" placeholder="{&quot;url&quot;: '/app'...}" />
+            <marker date="1460475318851" expanded="true" signature="1098:1218" placeholder="{&quot;url&quot;: '/search'...}" />
+            <marker date="1460475318851" expanded="true" signature="1131:1214" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1244:1414" placeholder="{&quot;url&quot;: '/browse'...}" />
+            <marker date="1460475318851" expanded="true" signature="1281:1408" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1306:1400" placeholder="{&quot;templateUrl&quot;: 'templates/browse.html'...}" />
+            <marker date="1460475318851" expanded="true" signature="1445:1624" placeholder="{&quot;url&quot;: '/playlists'...}" />
+            <marker date="1460475318851" expanded="true" signature="1485:1618" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1652:1843" placeholder="{&quot;url&quot;: '/playlists/:id'...}" />
+            <marker date="1460475318851" expanded="true" signature="1700:1837" placeholder="{...}" />
+            <marker date="1460475318851" expanded="true" signature="1725:1827" placeholder="{&quot;templateUrl&quot;: 'templates/playlist.html'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -562,7 +578,7 @@
     <entry file="file://$PROJECT_DIR$/www/templates/browse.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="88" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="88" />
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -570,7 +586,7 @@
     <entry file="file://$PROJECT_DIR$/www/templates/playlist.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -578,7 +594,7 @@
     <entry file="file://$PROJECT_DIR$/www/templates/playlists.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="88" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="88" />
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -586,32 +602,24 @@
     <entry file="file://$PROJECT_DIR$/www/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.961538">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/details_by_category.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31641287">
-          <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-          <folding>
-            <element signature="e#106#1208#0" expanded="false" />
-            <element signature="e#1280#1928#0" expanded="false" />
-            <element signature="e#1995#3142#0" expanded="false" />
-            <element signature="e#3211#3858#0" expanded="false" />
-            <element signature="e#3939#5134#0" expanded="false" />
-            <element signature="e#4052#4138#0" expanded="false" />
-            <element signature="e#4149#4509#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-1.5956007">
+          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
