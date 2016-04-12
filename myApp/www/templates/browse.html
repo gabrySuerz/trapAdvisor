@@ -2,12 +2,11 @@
     <ion-content>
         <ion-list>
           <!-- Per evitare di buggare tutto -->
-          <div ng-if="documents.length==0" class="list card">
+          <div ng-if="documents.length==0 && !isLoading" class="list card">
                 <div  class="col-70 col-offset-10">
                     <h3>Sembra che nessun evento sia al momento disponibile.</h3>
                 </div>
-          </div>
-
+            </div>
             <ion-item ng-repeat="x in documents">
                 <a href="#/app/playlists/{{$index}}">
                     <div class="list card">
@@ -25,5 +24,8 @@
                 </a>
             </ion-item>
         </ion-list>
+        <div ng-if="isLoading">
+            <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+        </div>
     </ion-content>
 </ion-view>
