@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
         $scope.posts = response.data.data;
         localStorage.clear()
         localStorage.setItem("posts", angular.toJson($scope.posts))
-        //$scope.isLoading=false;
+        $scope.isLoading=false;
     })
     
     
@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
             }
             localStorage.clear();
             localStorage.setItem("posts", angular.toJson($scope.posts))
-            //$scope.isLoading=false;
+            $scope.isLoading=false;
         })
     }
      
