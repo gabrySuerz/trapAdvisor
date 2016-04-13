@@ -15,12 +15,7 @@
         android:padding="10dp"
         android:layout_marginBottom="10dp" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/imageView"
-        android:focusable="true"
-        android:padding="5dp">
+
 
         <ImageButton
             android:layout_width="160dp"
@@ -41,27 +36,23 @@
             android:layout_row="0"
             android:layout_column="2"
             android:src="@drawable/natura"
-            android:scaleType="center"/>
+            android:scaleType="center"
+            android:layout_below="@+id/imageButton4"
+            android:layout_alignLeft="@+id/imageButton4"
+            android:layout_alignStart="@+id/imageButton4"
+            android:layout_marginTop="15dp" />
 
-        <Space
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_row="1"
-            android:layout_column="0" />
-
-        <Space
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_row="1"
-            android:layout_column="2" />
-
-        <ImageButton
+    <ImageButton
             android:layout_width="160dp"
             android:layout_height="105dp"
             android:id="@+id/imageButton3"
             android:layout_row="2"
             android:layout_column="0"
-            android:src="@drawable/storia"/>
+            android:src="@drawable/storia"
+            android:layout_below="@+id/imageButton5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
 
         <ImageButton
             android:layout_width="160dp"
@@ -69,27 +60,22 @@
             android:id="@+id/imageButton4"
             android:layout_row="2"
             android:layout_column="2"
-            android:src="@drawable/enogastronomia"/>
+            android:src="@drawable/enogastronomia"
+            android:layout_alignTop="@+id/imageButton5"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-        <Space
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_row="3"
-            android:layout_column="0" />
-
-        <Space
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_row="3"
-            android:layout_column="2" />
-
-        <ImageButton
+    <ImageButton
             android:layout_width="160dp"
             android:layout_height="105dp"
             android:id="@+id/imageButton5"
             android:layout_row="4"
             android:layout_column="0"
-            android:src="@drawable/sport"/>
+            android:src="@drawable/sport"
+            android:layout_below="@+id/imageButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
 
         <ImageButton
             android:layout_width="160dp"
@@ -97,7 +83,10 @@
             android:id="@+id/imageButton6"
             android:layout_row="4"
             android:layout_column="2"
-            android:src="@drawable/passioni" />
+            android:src="@drawable/passioni"
+            android:layout_below="@+id/imageView"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
 
-    </GridLayout>
+    <!--</GridLayout>-->
 </RelativeLayout>

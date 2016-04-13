@@ -57,7 +57,7 @@ public class Feed extends AppCompatActivity {
         params.add("action", "incaneva_events");
         params.add("blog", "1,6,7,8");
         params.add("old", "true");
-        params.add("limit", "7");
+        params.add("limit", "20");
 
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
         asyncHttpClient.post("http://incaneva.it/wp-admin/admin-ajax.php", params, new AsyncHttpResponseHandler() {

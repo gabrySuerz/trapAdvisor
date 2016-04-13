@@ -44,7 +44,7 @@ public class Detail extends AppCompatActivity {
         }
 
         t.setText(title);
-        d.setText(android.text.Html.fromHtml(desc));
+        d.setText(android.text.Html.fromHtml(desc).toString());
         sd.setText(datain);
         ed.setText(datafin);
         pl.setText(place);
