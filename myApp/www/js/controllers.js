@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope, $http, $templateCache) {
     $scope.isLoading=true;
-    var numpost = 2;
+    var numpost = 20;
     
     var dataObj = {
         action: "incaneva_events",
@@ -52,9 +52,9 @@ angular.module('starter.controllers', [])
             blog: "1,6,7,8",
             offset: numpost,
             old: true,
-            limit: 10
+            limit: 20
         };
-        numpost = numpost + 10
+        numpost = numpost * 2
         
         $http({
             method: "POST",
@@ -93,12 +93,13 @@ angular.module('starter.controllers', [])
 
 .controller('BrowseCtrl', function($scope, $http, $templateCache) {
     $scope.isLoading=true;
+    var numpost = 10;
     
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
         old: true,
-        limit: 5
+        limit: numpost
     };
     
     $http({
@@ -122,6 +123,43 @@ angular.module('starter.controllers', [])
         localStorage.setItem("posts", angular.toJson($scope.posts))
         $scope.isLoading=false;
     })
+    
+    $scope.loadMore=function(){
+        isLoading = true
+        var dataObj = {
+            action: "incaneva_events",
+            blog: "1,6,7,8",
+            offset: numpost,
+            old: true,
+            limit: 10
+        };
+        numpost = numpost * 2
+        
+        $http({
+            method: "POST",
+            url: "http://incaneva.it/wp-admin/admin-ajax.php",
+            data: dataObj,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+            }
+        }).success(function (data) {
+            
+        }).error(function(response){
+            $scope.posts[$scope.posts.length + 1].push({ blogname: "Nessun post trovato", post_excerpt: ""})
+            $scope.isLoading=false;
+        }).then(function (response) {
+            for(var i=0;i<response.data.data.length;i++){
+                $scope.posts.push(response.data.data[i])
+            }
+            localStorage.clear();
+            localStorage.setItem("posts", angular.toJson($scope.posts))
+            $scope.isLoading=false;
+        })
+    }
 
 })
 
@@ -129,7 +167,7 @@ angular.module('starter.controllers', [])
     $scope.category = $stateParams.category;
     $scope.postsByCat = [];
     $scope.isLoading=true;
-    var numpost = 20;
+    var numpost = 30;
 
     var dataObj = {
         action: "incaneva_events",
@@ -164,6 +202,43 @@ angular.module('starter.controllers', [])
         localStorage.setItem("postbycat", angular.toJson($scope.postsByCat))
         $scope.isLoading=false;
     })
+    
+    $scope.loadMore=function(){
+        isLoading = true
+        var dataObj = {
+            action: "incaneva_events",
+            blog: "1,6,7,8",
+            offset: numpost,
+            old: true,
+            limit: 10
+        };
+        numpost = numpost * 2
+        
+        $http({
+            method: "POST",
+            url: "http://incaneva.it/wp-admin/admin-ajax.php",
+            data: dataObj,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+            }
+        }).success(function (data) {
+            
+        }).error(function(response){
+            $scope.posts[$scope.posts.length + 1].push({ blogname: "Nessun post trovato", post_excerpt: ""})
+            $scope.isLoading=false;
+        }).then(function (response) {
+            for(var i=0;i<response.data.data.length;i++){
+                $scope.posts.push(response.data.data[i])
+            }
+            localStorage.clear();
+            localStorage.setItem("posts", angular.toJson($scope.posts))
+            $scope.isLoading=false;
+        })
+    }
 })
     
     .controller('DetailsByCategoryCtrl', function($scope,$stateParams,$http) {
