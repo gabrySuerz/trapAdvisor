@@ -13,12 +13,11 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope, $http, $templateCache) {
     $scope.isLoading=true;
-    var numpost = 10;
+    var numpost = 2;
     
     var dataObj = {
         action: "incaneva_events",
         blog: "1,6,7,8",
-        old: true,
         limit: numpost
     };
     
@@ -37,7 +36,7 @@ angular.module('starter.controllers', [])
         
     }).error(function(response){
         $scope.posts = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
-        $scope.isLoading=false;
+        //$scope.isLoading=false;
     }).then(function (response) {
         $scope.posts = response.data.data;
         localStorage.clear()
@@ -52,9 +51,10 @@ angular.module('starter.controllers', [])
             action: "incaneva_events",
             blog: "1,6,7,8",
             offset: numpost,
+            old: true,
             limit: 10
         };
-        numpost = numpost * 2
+        numpost = numpost + 10
         
         $http({
             method: "POST",
@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
             }
             localStorage.clear();
             localStorage.setItem("posts", angular.toJson($scope.posts))
-            $scope.isLoading=false;
+            //$scope.isLoading=false;
         })
     }
      
