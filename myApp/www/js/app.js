@@ -107,12 +107,4 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     return function(x) {
         return (!!x) && (x.indexOf("_")) ? x.replace("_", " e ") : '';
     }
-}).filter('newLine', function(){
-    return function(x){
-        return (!!x) ? x.replace("\r\n\r\n", "<br/><br/>") : '';
-    }
-}).filter('tag', function(){
-    return function(x){
-        return (!!x) && (x.indexOf("<strong>")) ? x.charAt(0).toUpperCase() + x.substr(1).toLowerCase()/*x.replace("<strong>", "").replace("</strong>", "").replace("<em>", "").replace("</em>", "")*/ : '';
-    }
-});   
+});
