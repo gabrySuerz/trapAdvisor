@@ -1,15 +1,15 @@
 <ion-view view-title={{post.evcal_start_date}}>
     <ion-content>
-        <ion-item >
+        <ion-item>
             <div class="list card">
-                <div class="item item-avatar">
-                    <h1>{{post.blogname}}</h1>
-                    <p>{{post.evcal_start_date}}</p>
+                <div class="item tit">
+                    <h3>{{post.post_title}}</h3>
+                    <p>{{post.evcal_start_date}}<br/>{{post.blogname_slug}}</p>
                 </div>
-                <div ng-if="documents.blogname != 'Nessun post trovato'">
+                <div ng-if="post.blogname != 'Nessun post trovato'">
                     <div class="item item-body">
                         <img class="full-image" src="{{post.post_thumbnail}}">
-                        <p ng-bind-html="post.post_content"></p>
+                        <p ng-bind-html="post.post_content | newLine | lowercase"></p>
                     </div>
                 </div>
             </div>

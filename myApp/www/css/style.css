@@ -19,6 +19,14 @@ ion-view{
     font-size: 20pt;
 }
 
+h2{
+    font-size: 12pt;
+}
+
 a{
     text-decoration: none;
+}
+
+.tit{
+    text-align: center;
 }

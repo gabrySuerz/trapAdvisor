@@ -1,5 +1,16 @@
-<ion-view view-title="{{category | capitalize | under}}">
+<ion-view>
+    <ion-nav-title>
+        <div ng-switch="category">
+            <span ng-switch-when="eventi" style="color:orange">{{category | capitalize | under}}</span>
+            <span ng-switch-when="natura" style="color:green">{{category | capitalize | under}}</span>
+            <span ng-switch-when="storia_cultura" style="color:black">{{category | capitalize | under}}</span>
+            <span ng-switch-when="enogastronomia" style="color:#b1ab03">{{category | capitalize | under}}</span>
+            <span ng-switch-when="sport" style="color:dodgerblue">{{category | capitalize | under}}</span>
+            <span ng-switch-when="passioni" style="color:purple">{{category | capitalize | under}}</span>
+        </div>
+    </ion-nav-title>
     <ion-content>
+
         <ion-list>
           <!-- Per evitare di buggare tutto -->
           <div ng-if="postsByCat.length==0 && !isLoading" class="list card">
@@ -8,18 +19,10 @@
                 </div>
             </div>
             <ion-item ng-repeat="x in postsByCat">
-<<<<<<< HEAD
-              <a href="#/app/details_by_category/{{$index}}">
-                  <div class="list card">
-                    <div class="item item-avatar">
-                      <h3>{{x.blogname}}</h3>
-
-                      <p>{{x.evcal_start_date}}</p>
-=======
-                <a href="#/app/playlists/{{$index}}">
+               <a href="#/app/details_by_category/{{$index}}">
                     <div class="list card">
-                        <div class="item item-avatar">
-                            <h3>{{x.blogname}}</h3>
+                        <div class="item">
+                            <h2>{{x.post_title}}</h2>
                             <p>{{x.evcal_start_date}}</p>
                         </div>
                         <div ng-if="postsByCat.blogname != 'Nessun post trovato'">
@@ -28,13 +31,10 @@
                                 <p>{{x.post_excerpt | myFilter}}</p>
                             </div>
                         </div>
->>>>>>> origin/trapAdvisor_for_Ionic
                     </div>
                 </a>
             </ion-item>
         </ion-list>
-        <div ng-if="isLoading">
-            <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
-        </div>
+        <ion-infinite-scroll ng-if="isLoading" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
