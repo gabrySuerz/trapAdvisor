@@ -9,7 +9,7 @@
                 <div ng-if="post.blogname != 'Nessun post trovato'">
                     <div class="item item-body">
                         <img class="full-image" src="{{post.post_thumbnail}}">
-                        <p ng-bind-html="post.post_content"></p>
+                        <p ng-bind-html="post.post_content | newLine | lowercase"></p>
                     </div>
                 </div>
             </div>
