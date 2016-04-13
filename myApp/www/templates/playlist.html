@@ -2,14 +2,14 @@
     <ion-content>
         <ion-item>
             <div class="list card">
-                <div class="item">
+                <div class="item tit">
                     <h3>{{post.post_title}}</h3>
-                    <p>{{post.evcal_start_date}}</p>
+                    <p>{{post.evcal_start_date}}<br/>{{post.blogname_slug}}</p>
                 </div>
                 <div ng-if="post.blogname != 'Nessun post trovato'">
                     <div class="item item-body">
                         <img class="full-image" src="{{post.post_thumbnail}}">
-                        <p ng-bind-html="post.post_content"></p>
+                        <p ng-bind-html="post.post_content | newLine | tag | lowercase"></p>
                     </div>
                 </div>
             </div>
