@@ -36,12 +36,12 @@ angular.module('starter.controllers', [])
         
     }).error(function(response){
         $scope.posts = [{ blogname: "Nessun post trovato", post_excerpt: ""}]
-        //$scope.isLoading=false;
+        $scope.isLoading=false;
     }).then(function (response) {
         $scope.posts = response.data.data;
         localStorage.clear()
         localStorage.setItem("posts", angular.toJson($scope.posts))
-        $scope.isLoading=false;
+        //$scope.isLoading=false;
     })
     
     
