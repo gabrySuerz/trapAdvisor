@@ -1,0 +1,53 @@
+/* Empty. Add your own CSS if you like */
+
+.bar.bar-stable.bar-header {
+    background-color: red;
+}
+
+.login {
+    background-color: transparent;
+    background-image: url(../img/login3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bar {
+    z-index: 0;
+}
+
+    .bar.bar-header.loginBar {
+        background-color: transparent;
+        border: none;
+    }
+
+.item.item-input {
+    background-color: transparent;
+    border-radius: 1px;
+    filter: blur(0px);
+    padding-top: 2em;
+    border: none;
+}
+
+.item {
+    background-color: transparent;
+    border-radius: 1px;
+    border: none;
+}
+
+.button.button-dark {
+    background-color: #19171b;
+    filter: blur(0px);
+    margin-top: 2em;
+    height: 75px;
+}
+
+.listof {
+    border: none;
+    margin-top: 50%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.input-label {
+    color: white;
+}
