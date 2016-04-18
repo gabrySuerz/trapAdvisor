@@ -1,24 +1,58 @@
-﻿angular.module('starter')
+﻿
+var controllerModule = angular.module('blank.controllers', ['uiGmapgoogle-maps']);
 
-.controller('loginCtrl', function ($scope, $stateParams) {
+controllerModule.controller("loginCtrl", function ($scope, $http) {
 
-})
+    $scope.username = "";
+    $scope.name = ""
 
-.controller('mapReadyCtrl', function ($scope, $stateParams, uiGmapGoogleMapApi) {
 
-    uiGmapGoogleMapApi.then(function (maps) {
+    var dati = {
+        username: $scope.username
+    };
 
-    })
-})
+    $scope.doLogin = function (email, password) {
+        $scope.email = email;
+        $scope.password = password;
+        alert("Email: " + email + " Password: " + password);
+        $scope.shaObj = new jsSHA("SHA-512", "TEXT");
+        $scope.shaObj.update(password);
+        $scope.hash = $scope.shaObj.getHash("B64");
 
-.controller('mapCtrl', function ($scope, $stateParams) {
+        var dataObj = {
+            email: $scope.email,
+            password: $scope.hash
+        };
+
+        $http({
+            method: "POST",
+            url: "http://its-bitrace.herokuapp.com/api/public/v2/login",
+            data: dataObj,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            transformRequest: function (obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            }
+        }).success(function (response) {
+        }).error(function (response) {
+            console.log(response);
+        }).then(function (response) {
+            $scope.user = response.data.data;
+        })
+
+    }
+
+
+}).controller('mapCtrl', function ($scope, $stateParams, uiGmapGoogleMapApi) {
 
     $scope.map = {
         center: {
-            latitude: 42,
-            longitude: 42
+            latitude: 37.2756583,
+            longitude: -104.6560543
         },
-        zoom: 10
+        zoom: 4
     }
 
     $scope.options = {
@@ -49,4 +83,21 @@
             }
         }
     }
-});
+
+    $scope.windowOptions = {
+        visible: false
+    };
+
+    $scope.onClick = function () {
+        $scope.windowOptions.visible = !$scope.windowOptions.visible;
+    };
+
+    $scope.closeClick = function () {
+        $scope.windowOptions.visible = false;
+    };
+
+    uiGmapGoogleMapApi.then(function (maps) {
+
+    });
+
+}).controller('detailCtrl', function ($scope, $stateParams) {});
