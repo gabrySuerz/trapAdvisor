@@ -26,13 +26,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'uiGmapgoogle-maps'])
         $stateProvider
 
         .state('login', {
-            url: '/login',
             templateUrl: 'templates/login.html',
             controller: 'loginCtrl'
         })
 
         .state('mapPage', {
-            url: '/mapPage',
             templateUrl: 'templates/mapPage.html',
             controller: 'mapReadyCtrl'
         });

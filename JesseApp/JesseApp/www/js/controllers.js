@@ -1,4 +1,4 @@
-﻿angular.module('starter')
+﻿angular.module('starter', [])
 
 .controller('loginCtrl', function ($scope, $stateParams) {
 
