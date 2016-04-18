@@ -35,7 +35,17 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         url: '/login',
         templateUrl: 'templates/login.html',
         controller: 'loginController'
-      });
+      })
+
+    .state('maps', {
+        url: '/maps',
+        templateUrl: 'templates/maps.html',
+        controller: 'mapsController',
+        params: {
+            'session': 'some default',
+            'id': 'some default'
+        }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

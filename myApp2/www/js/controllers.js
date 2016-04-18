@@ -1,7 +1,7 @@
 
 var controllerModule = angular.module('blank.controllers', []);
 
-controllerModule.controller("loginController", function($scope, $http){
+controllerModule.controller("loginController", function($scope, $http, $state){
 
     $scope.username = "";
     $scope.name = ""
@@ -14,7 +14,6 @@ controllerModule.controller("loginController", function($scope, $http){
     $scope.doLogin = function(email, password){
         $scope.email = email;
         $scope.password = password;
-        alert("Email: " + email + " Password: " + password);
         $scope.shaObj = new jsSHA("SHA-512", "TEXT");
         $scope.shaObj.update(password);
         $scope.hash = $scope.shaObj.getHash("B64");
@@ -40,18 +39,36 @@ controllerModule.controller("loginController", function($scope, $http){
             if(response.success == true){
                 alert("Login effettuato")
             }
-            else{
-                alert("Errore di login")
-            }
             console.log(response);
         }).error(function(response){
             console.log(response);
+            alert("Errore di login")
         }).then(function(response){
             $scope.documents = response.data.data;
-            console.log($scope.documents)
+            console.log($scope.documents.session)
+            $state.go('maps', {session: $scope.documents.session});
         })
 
     }
+})
 
+controllerModule.controller("mapsController", function($scope, $http, $state, $stateParams){
+
+    $scope.mySession = $stateParams.session;
+
+ $http({
+        method: "GET",
+        url: "http://its-bitrace.herokuapp.com/api/v2/stores/",
+        headers: {
+            'x-bitrace-session': $scope.mySession
+        }
+    }).success(function (response) {
+        console.log(response);
+    }).error(function(response){
+        console.log(response);
+    }).then(function(response){
+        $scope.documents = response.data.data;
+        console.log($scope.documents);
+    })
 
 });
