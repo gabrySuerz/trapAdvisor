@@ -3,11 +3,11 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var myApp = angular.module('starter', ['ionic', 'blank.controllers']);
+var jesseApp = angular.module('starter', ['ionic', 'controllers', 'factory']);
 
 var _key = 'AIzaSyBH5mSXgLqSdmq18AUnNCKp5h65CJdj_Dk'
 
-myApp.run(function ($ionicPlatform) {
+jesseApp.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -25,7 +25,7 @@ myApp.run(function ($ionicPlatform) {
     });
 });
 
-myApp.config(function ($stateProvider, $urlRouterProvider) {
+jesseApp.config(function ($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -38,13 +38,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/login.html',
             controller: 'loginCtrl'
         })
-        .state('maps', {
+        .state('map', {
             url: '/map',
             templateUrl: 'templates/mapPage.html',
             controller: 'mapCtrl'
         })
         .state('detail', {
-            url: '/detail',
+            url: '/detail/:guid',
             templateUrl: 'templates/detail.html',
             controller: 'detailCtrl'
         });
@@ -58,7 +58,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         v: '3.17',
         libraries: '',
         language: 'it',
-        sensor: 'false',
     })
 });
 
