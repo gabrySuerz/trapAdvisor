@@ -38,24 +38,62 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/login.html',
             controller: 'loginCtrl'
         })
-        .state('map', {
-            url: '/map',
-            templateUrl: 'templates/mapPage.html',
-            controller: 'mapCtrl'
+
+        .state('top', {
+            url: '/top',
+            abstract: true,
+            templateUrl: 'templates/top.html'
         })
-        .state('detail', {
+        .state('top.map', {
+            url: '/map',
+            views: {
+                'top-map': {
+                    templateUrl: 'templates/mapPage.html',
+                    controller: 'mapCtrl'
+                }
+            }
+        })
+        .state('top.list', {
+            url: '/list',
+            views: {
+                'top-list': {
+                    templateUrl: 'templates/list.html',
+                    controller: 'mapCtrl'
+                }
+            }
+        })
+
+        .state('tab', {
+            url: '/tab',
+            abstract: true,
+            templateUrl: 'templates/tabs.html'
+        })
+        .state('tab.detail', {
             url: '/detail/:guid',
             templateUrl: 'templates/detail.html',
             controller: 'detailCtrl'
+        })
+        .state('tab.products', {
+            url: '/products',
+            templateUrl: 'templates/products.html',
+            controller: 'productsCtrl'
+        })
+        .state('tab.contacts', {
+            url: '/contacts',
+            templateUrl: 'templates/contacts.html',
+            controller: 'contactsCtrl'
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
-
+    if (localStorage.getItem("session") != null) {
+        $urlRouterProvider.otherwise('/top/map');
+    } else {
+        $urlRouterProvider.otherwise('/login');
+    }
 }).config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: _key,
-        v: '3.17',
+        v: '3.22',
         libraries: '',
         language: 'it',
     })

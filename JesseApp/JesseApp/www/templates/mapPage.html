@@ -1,5 +1,5 @@
-﻿<ion-view view-title="Search">
-    <ion-content ng-controller="mapCtrl">
+﻿<ion-view>
+    <ion-content>
         <div id="map_canvas">
             <ui-gmap-google-map class="ng-isolate-scope angular-google-map" center="map.center" zoom="map.zoom" draggable="true" options="options">
                 <div ng-repeat="marker in markers">
@@ -8,13 +8,11 @@
                             <div class="contentWindow">
                                 {{marker.title}}<br />
                                 {{marker.options.labelContent}}<br />
-                                <a href="#/detail/{{marker.id}}">Dettagli</a>
+                                <a href="#/tab/detail/{{marker.id}}">Dettagli</a>
                             </div>
                         </ui-gmap-window>
                     </ui-gmap-marker>
                 </div>
-                <ui-gmap-markers models="randomMarkers" coords="randomMarkers.coords">
-                </ui-gmap-markers>
             </ui-gmap-google-map>
         </div>
     </ion-content>

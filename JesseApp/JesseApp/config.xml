@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget id="com.ionicframework.ionicblankapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>ionic-blankapp</name>
+<widget id="com.ionicframework.jesseApp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>jesseApp</name>
   <description>
         An Ionic Framework and Cordova project.
     </description>
@@ -27,4 +27,6 @@
   <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
   <plugin name="cordova-plugin-statusbar" spec="~2.1.0" />
   <plugin name="ionic-plugin-keyboard" spec="~1.0.8" />
+  <preference name="Orientation" value="portrait" />
+  <preference name="Fullscreen" value="False" />
 </widget>
