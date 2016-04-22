@@ -1,7 +1,7 @@
-﻿<ion-view class="listview">
+﻿<ion-view>
     <ion-content>
-        <div ng-repeat="store in markers">
-            <div class="item item-text-wrap" ng-click="url(store.id)">
+        <div class="card" ng-repeat="store in markers">
+            <div class="item item-text-wrap">
                 {{store.title}}<br />
                 {{store.options.labelContent}}
             </div>

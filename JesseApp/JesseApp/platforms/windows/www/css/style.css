@@ -1,24 +1,11 @@
 ﻿/* Empty. Add your own CSS if you like */
 
-.bar.bar-stable.bar-header {
-    background-color: red;
-}
-
 .login {
     background-color: transparent;
     background-image: url(../img/login4def.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-.bar {
-    z-index: 0;
-}
-
-    .bar.bar-header.loginBar {
-        background-color: transparent;
-        border: none;
-    }
 
 .item.item-input {
     background-color: transparent;
@@ -73,4 +60,12 @@
 
 .contentWindow{
     text-align:center;
+}
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: darkgoldenrod;
+}
+
+.tab-item{
+    color:gold;
 }

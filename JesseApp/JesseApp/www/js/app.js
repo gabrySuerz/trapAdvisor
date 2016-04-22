@@ -66,22 +66,35 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('tab', {
             url: '/tab',
             abstract: true,
-            templateUrl: 'templates/tabs.html'
+            templateUrl: 'templates/tabs.html',
+            controller: 'tabCtrl'
         })
         .state('tab.detail', {
             url: '/detail/:guid',
-            templateUrl: 'templates/detail.html',
-            controller: 'detailCtrl'
+            views: {
+                'tab-detail': {
+                    templateUrl: 'templates/detail.html',
+                    controller: 'detailCtrl'
+                }
+            }
         })
         .state('tab.products', {
             url: '/products',
-            templateUrl: 'templates/products.html',
-            controller: 'productsCtrl'
+            views: {
+                'tab-products': {
+                    templateUrl: 'templates/products.html',
+                    controller: 'detailCtrl'
+                }
+            }
         })
         .state('tab.contacts', {
             url: '/contacts',
-            templateUrl: 'templates/contacts.html',
-            controller: 'contactsCtrl'
+            views: {
+                'tab-contacts': {
+                    templateUrl: 'templates/contacts.html',
+                    controller: 'detailCtrl'
+                }
+            }
         });
 
     // if none of the above states are matched, use this as the fallback

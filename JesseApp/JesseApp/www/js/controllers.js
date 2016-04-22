@@ -18,10 +18,10 @@ controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginM
 
 })
 
-controllerModule.controller('mapCtrl', function ($scope, $stateParams, $http, uiGmapGoogleMapApi, dataModule) {
+controllerModule.controller('mapCtrl', function ($scope, $state, $stateParams, $http, uiGmapGoogleMapApi, dataModule) {
 
     var url = "http://its-bitrace.herokuapp.com/api/v2/stores/"
-    var data = null//JSON.parse(localStorage.getItem("stores"))
+    /*var data = localStorage.getItem("stores")
     if (data != null) {
         $scope.markers = []
         for (var i = 0; i < data.length; i++) {
@@ -39,33 +39,33 @@ controllerModule.controller('mapCtrl', function ($scope, $stateParams, $http, ui
                 title: data[i].name
             })
         }
-    } else {
-        dataModule.dataFx(url)
-            .success(function (response) {
-            }).error(function (response) {
-                console.log(response);
-                return
-            }).then(function (response) {
-                var stores = response.data.data;
-                localStorage.setItem("stores", stores)
-                $scope.markers = []
-                for (var i = 0; i < stores.length; i++) {
-                    $scope.markers.push({
-                        id: stores[i].guid,
-                        coords: {
-                            latitude: stores[i].latitude,
-                            longitude: stores[i].longitude
-                        },
-                        options: {
-                            draggable: true,
-                            labelVisible: false,
-                            labelContent: stores[i].address
-                        },
-                        title: stores[i].name
-                    })
-                }
-            })
-    }
+    } else {*/
+    dataModule.dataFx(url)
+        .success(function (response) {
+        }).error(function (response) {
+            console.log(response);
+            return
+        }).then(function (response) {
+            var stores = response.data.data;
+            localStorage.setItem("stores", stores)
+            $scope.markers = []
+            for (var i = 0; i < stores.length; i++) {
+                $scope.markers.push({
+                    id: stores[i].guid,
+                    coords: {
+                        latitude: stores[i].latitude,
+                        longitude: stores[i].longitude
+                    },
+                    options: {
+                        draggable: true,
+                        labelVisible: false,
+                        labelContent: stores[i].address
+                    },
+                    title: stores[i].name
+                })
+            }
+        })
+    //}
 
     $scope.map = {
         center: {
@@ -82,40 +82,55 @@ controllerModule.controller('mapCtrl', function ($scope, $stateParams, $http, ui
     $scope.windowOptions = {
         visible: false
     }
+
+    $scope.url = function (guid) {
+        $state.go('tab.detail', { guid: guid })
+    }
+
 }).controller('listCtrl', function ($scope, $stateParams, $http, dataModule) {
     var url = "http://its-bitrace.herokuapp.com/api/v2/stores/"
-    var data = null//JSON.parse(localStorage.getItem("stores"))
+    /*var data = localStorage.getItem("stores")
     if (data != null) {
-        $scope.stores = data;
-    } else {
-        dataModule.dataFx(url)
-            .success(function (response) {
-            }).error(function (response) {
-                console.log(response);
-                return
-            }).then(function (response) {
-                $scope.stores = response.data.data;
-                localStorage.setItem("stores", $scope.stores)             
-            })
-    }
+        $scope.stores = JSON.parse(data);
+    } else {*/
+    dataModule.dataFx(url)
+        .success(function (response) {
+        }).error(function (response) {
+            console.log(response);
+            return
+        }).then(function (response) {
+            $scope.stores = response.data.data;
+            localStorage.setItem("stores", $scope.stores)
+        })
+    // }
 })
 
 controllerModule.controller('detailCtrl', function ($scope, $stateParams, dataModule) {
 
     var guid = $stateParams.guid
     var url = "http://its-bitrace.herokuapp.com/api/v2/stores/" + guid
-    var data = JSON.parse(localStorage.getItem(guid))
+    /*var data = localStorage.getItem(guid)
     if (data != null) {
         $scope.store = data;
-    } else {
-        dataModule.dataFx(url)
-            .success(function (response) {
-            }).error(function (response) {
-                console.log(response);
-                return
-            }).then(function (response) {
-                $scope.store = response.data.data
-                localStorage.setItem($scope.store.id, $scope.store)
-            });
+    } else {*/
+    dataModule.dataFx(url)
+        .success(function (response) {
+        }).error(function (response) {
+            console.log(response);
+            return
+        }).then(function (response) {
+            $scope.store = response.data.data
+            //localStorage.setItem($scope.store.id, $scope.store)
+        });
+    //}
+    $scope.goBack = function () {
+        $state.go('top.map')
+        //? $ionicHistory()
     }
+})
+
+controllerModule.controller('tabCtrl', function ($scope, $stateParams) {
+
+    $scope.azienda = $stateParams.guid
+
 })
