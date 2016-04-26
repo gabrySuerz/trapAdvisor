@@ -3,20 +3,38 @@ var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps']);
 
 controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginModule, $ionicPopup) {
 
+    if (localStorage.getItem("userJesse") != null && localStorage.getItem("pwdJesse") != null) {
+        $scope.email = localStorage.getItem("userJesse")
+        $scope.password = localStorage.getItem("pwdJesse")
+    }
+
     $scope.doLogin = function (email, password) {
         loginModule.loginFx(email, password)
             .success(function (response) {
+                if (response.success != true) {
+                    $ionicPopup.alert({
+                        title: 'Error ' + response.errorCode,
+                        template: response.errorMessage
+                    })
+                } else {
+                    $scope.user = response.data;
+                    /*if (sessionStorage.getItem("session") == null) {
+                        sessionStorage.setItem("session", $scope.user.session)
+                    } else {
+                        return sessionStorage.getItem("session")
+                    }
+                    localStorage.setItem("userJesse", email)
+                    localStorage.setItem("pwdJesse", password)*/
+                    localStorage.setItem("session",$scope.user.session)
+                    $state.go('top.map');
+                }
             }).error(function (response) {
                 $ionicPopup.alert({
-                    title: 'Errore',//response.type,
-                    template: 'Connessione di rete mancante o login invalido'//response.errorMessage
+                    title: 'Errore di connessione',
+                    template: 'Accendi la rete dati e riprova ad effettuare il login'
                 })
             }).then(function (response) {
-                $scope.user = response.data.data;
-                localStorage.setItem("session", $scope.user.session)
-                $state.go('top.map');
             })
-
     }
 
 })
@@ -24,8 +42,9 @@ controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginM
 controllerModule.controller('mapCtrl', function ($scope, $state, $stateParams, $http, uiGmapGoogleMapApi, dataModule) {
 
     var url = "http://its-bitrace.herokuapp.com/api/v2/stores/"
-    /*var data = localStorage.getItem("stores")
-    if (data != null) {
+    var data = localStorage.getItem("stores")
+    console.log(data)
+    /*if (data != null) {
         $scope.markers = []
         for (var i = 0; i < data.length; i++) {
             $scope.markers.push({
@@ -42,33 +61,34 @@ controllerModule.controller('mapCtrl', function ($scope, $state, $stateParams, $
                 title: data[i].name
             })
         }
-    } else {*/
-    dataModule.dataFx(url)
-        .success(function (response) {
-        }).error(function (response) {
-            console.log(response);
-            return
-        }).then(function (response) {
-            var stores = response.data.data;
-            localStorage.setItem("stores", stores)
-            $scope.markers = []
-            for (var i = 0; i < stores.length; i++) {
-                $scope.markers.push({
-                    id: stores[i].guid,
-                    coords: {
-                        latitude: stores[i].latitude,
-                        longitude: stores[i].longitude
-                    },
-                    options: {
-                        draggable: true,
-                        labelVisible: false,
-                        labelContent: stores[i].address
-                    },
-                    title: stores[i].name
-                })
-            }
-        })
-    //}
+        console.log($scope.markers)*/
+    //} else {
+        dataModule.dataFx(url)
+            .success(function (response) {
+            }).error(function (response) {
+                console.log(response);
+                return
+            }).then(function (response) {
+                var stores = response.data.data;
+                localStorage.setItem("stores", angular.toJson(stores))
+                $scope.markers = []
+                for (var i = 0; i < stores.length; i++) {
+                    $scope.markers.push({
+                        id: stores[i].guid,
+                        coords: {
+                            latitude: stores[i].latitude,
+                            longitude: stores[i].longitude
+                        },
+                        options: {
+                            draggable: true,
+                            labelVisible: false,
+                            labelContent: stores[i].address
+                        },
+                        title: stores[i].name
+                    })
+                }
+            })
+   // }
 
     $scope.map = {
         center: {

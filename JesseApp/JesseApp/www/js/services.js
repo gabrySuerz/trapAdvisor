@@ -2,6 +2,7 @@
 var jesseApp = angular.module('factory', ['controllers'])
 
 jesseApp.factory('loginModule', ['$http', function ($http) {
+
     return {
         loginFx: function (email, password) {
             var shaObj = new jsSHA("SHA-512", "TEXT");
@@ -12,7 +13,6 @@ jesseApp.factory('loginModule', ['$http', function ($http) {
                 email: email,
                 password: hash
             };
-
             return $http({
                 method: "POST",
                 url: "http://its-bitrace.herokuapp.com/api/public/v2/login",
