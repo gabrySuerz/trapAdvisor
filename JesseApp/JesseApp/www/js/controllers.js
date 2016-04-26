@@ -1,13 +1,16 @@
 ﻿
 var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps']);
 
-controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginModule) {
+controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginModule, $ionicPopup) {
 
     $scope.doLogin = function (email, password) {
         loginModule.loginFx(email, password)
             .success(function (response) {
             }).error(function (response) {
-                return response.errorMessage
+                $ionicPopup.alert({
+                    title: 'Errore',//response.type,
+                    template: 'Connessione di rete mancante o login invalido'//response.errorMessage
+                })
             }).then(function (response) {
                 $scope.user = response.data.data;
                 localStorage.setItem("session", $scope.user.session)
@@ -97,7 +100,6 @@ controllerModule.controller('mapCtrl', function ($scope, $state, $stateParams, $
         .success(function (response) {
         }).error(function (response) {
             console.log(response);
-            return
         }).then(function (response) {
             $scope.stores = response.data.data;
             localStorage.setItem("stores", $scope.stores)
@@ -105,32 +107,35 @@ controllerModule.controller('mapCtrl', function ($scope, $state, $stateParams, $
     // }
 })
 
-controllerModule.controller('detailCtrl', function ($scope, $stateParams, dataModule) {
+controllerModule.controller('detailCtrl', function ($scope, $stateParams, dataModule, $window) {
 
     var guid = $stateParams.guid
     var url = "http://its-bitrace.herokuapp.com/api/v2/stores/" + guid
-    /*var data = localStorage.getItem(guid)
+    var data = localStorage.getItem(guid)
     if (data != null) {
         $scope.store = data;
-    } else {*/
-    dataModule.dataFx(url)
-        .success(function (response) {
-        }).error(function (response) {
-            console.log(response);
-            return
-        }).then(function (response) {
-            $scope.store = response.data.data
-            //localStorage.setItem($scope.store.id, $scope.store)
-        });
-    //}
+    } else {
+        dataModule.dataFx(url)
+            .success(function (response) {
+            }).error(function (response) {
+                console.log(response);
+            }).then(function (response) {
+                $scope.store = response.data.data
+                $window.localStorage.setItem($scope.store.id, $scope.store)
+            });
+    }
     $scope.goBack = function () {
         $state.go('top.map')
         //? $ionicHistory()
     }
 })
 
-controllerModule.controller('tabCtrl', function ($scope, $stateParams) {
+controllerModule.controller('tabCtrl', function ($scope, $stateParams, $state, $rootScope) {
 
     $scope.azienda = $stateParams.guid
+    //$ionicConfigProvider.backButton.previousTitleText(false)
+    $rootScope.$ionicGoBack = function () {
+        $state.go('top.map')
+    };
 
 })

@@ -58,14 +58,50 @@
     left: 0;
 }
 
-.contentWindow{
-    text-align:center;
+.contentWindow {
+    text-align: center;
 }
 
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
     color: darkgoldenrod;
 }
 
-.tab-item{
-    color:gold;
+.tab-item {
+    color: gold;
 }
+
+.bar-dark .button.button-clear {
+    color: gold;
+    font-size: 15pt;
+}
+
+.popup-head {
+    background-color: black;
+    border: black;
+}
+
+.popup-title {
+    color: gold;
+}
+
+.popup-body {
+    background-color: black;
+    border: black;
+    color: gold;
+}
+
+.popup-buttons {
+    background-color: black;
+    border: none;
+    color: gold;
+}
+
+    .popup-buttons .button {
+        background-color: gold;
+        color: black;
+    }
+
+        .popup-buttons .button.activated {
+            background-color: darkgoldenrod;
+            color: black;
+        }

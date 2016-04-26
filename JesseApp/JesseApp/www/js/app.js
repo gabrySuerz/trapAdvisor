@@ -98,11 +98,11 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    if (localStorage.getItem("session") != null) {
-        $urlRouterProvider.otherwise('/top/map');
-    } else {
+    //if (localStorage.getItem("session") != null) {
+        //$urlRouterProvider.otherwise('/top/map');
+    //} else {
         $urlRouterProvider.otherwise('/login');
-    }
+    //}
 }).config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: _key,
@@ -110,5 +110,7 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
         libraries: '',
         language: 'it',
     })
+}).config(function ($ionicConfigProvider){
+    $ionicConfigProvider.backButton.previousTitleText(false)
 });
 
