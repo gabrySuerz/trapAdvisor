@@ -7,8 +7,9 @@
                         <ui-gmap-window options="windowOptions">
                             <div class="contentWindow">
                                 {{marker.title}}<br />
-                                {{marker.options.labelContent}}<br />
-                                <a href="#/tab/detail/{{marker.id}}">Dettagli</a>
+                                {{data[$index].address}}<br />
+                                {{data[$index].phone}}<br />
+                                <a ng-click="url(marker.id)">Dettagli</a>
                             </div>
                         </ui-gmap-window>
                     </ui-gmap-marker>

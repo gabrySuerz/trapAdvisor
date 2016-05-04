@@ -1,15 +1,30 @@
 ﻿<ion-nav-bar class="bar-dark">
     <ion-nav-back-button>
     </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+        <div ng-hide="panel">
+            <button class="button back-button hide buttons button-clear header-item" ng-click="logout()">
+                <span class="ion-android-exit"></span>
+            </button>
+            <!--<button class="button back-button hide buttons button-clear header-item" ng-click="foursquare()">
+                <span class="ion-social-foursquare-outline"></span>
+            </button>-->
+            <button class="button back-button hide buttons button-clear header-item" >
+            </button>
+        </div>
+        <button class="button back-button hide buttons button-clear header-item" ng-click="open()">
+            <span class="ion-gear-b"></span>
+        </button>
+    </ion-nav-buttons>
 </ion-nav-bar>
 <ion-tabs class="tabs-dark tabs-icon-top">
-    <ion-tab title="Azienda" icon-off="ion-home" icon-on="ion-home" href="#/tab/detail/{{azienda}}">
-        <ion-nav-view name="tab-detail"></ion-nav-view>
+    <ion-tab title="Azienda" icon-off="ion-home" icon-on="ion-home" ui-sref="tab.details">
+        <ion-nav-view name="tab-details"></ion-nav-view>
     </ion-tab>
-    <ion-tab title="Prodotti" icon-off="ion-navicon-round" icon-on="ion-navicon-round" href="#/tab/products">
+    <ion-tab title="Prodotti" icon-off="ion-navicon-round" icon-on="ion-navicon-round" ui-sref="tab.products">
         <ion-nav-view name="tab-products"></ion-nav-view>
     </ion-tab>
-    <ion-tab title="Contatti" icon-off="ion-location" icon-on="ion-location" href="#/tab/contacts">
+    <ion-tab title="Contatti" icon-off="ion-location" icon-on="ion-location" ui-sref="tab.contacts">
         <ion-nav-view name="tab-contacts"></ion-nav-view>
     </ion-tab>
 </ion-tabs>

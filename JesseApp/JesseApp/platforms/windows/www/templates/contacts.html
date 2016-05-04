@@ -1,12 +1,11 @@
-﻿<ion-view wiew-title="contacts">
-    <ion-content>
-
-        <div class="item item-text-wrap">
-            {{store.sales_person.email}}<br />
-            {{store.sales_person.last}}
-            {{store.sales_person.first}}
-            {{store.sales_person.phone}}
+﻿<ion-view wiew-title="contacts" cache-view="false">
+    <ion-content class="background-black">
+        <div class="list background-black">
+            <div class="item item-icon-right border-style text-gold">
+                <h1 style="color:gold;">{{store.sales_person.first}}</h1><h1 style="color:gold;">{{store.sales_person.last}}</h1><br />
+                <h2 style="color:gold;">{{store.phone}}</h2><br />
+                <h2 style="color:gold;">{{store.sales_person.email}}</h2><br />
+            </div>
         </div>
-
     </ion-content>
 </ion-view>

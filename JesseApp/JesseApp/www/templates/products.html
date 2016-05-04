@@ -1,13 +1,20 @@
-﻿<ion-nav-bar class="bar-stable">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-</ion-nav-bar>
-<ion-view>
+﻿<ion-view cache-view="false">
     <ion-content>
-        <div class="item item-text-wrap">
-            <h2>{{store.products.name}}</h2>
-            <h2>{{store.products.price}}</h2>
-            <!--isAvailable-->
+        <div class="list">
+            <h3 class="text-center text-gold text-padding">I nostri prodotti</h3>
+            <br />
+            <div ng-repeat="x in store.products" class="item border-style">
+                <div class="item item-icon-right">
+                    <div ng-if="!x.isAvailable" class="text-red">
+                        <i class="icon ion-close-circled"></i>
+                    </div>
+                    <div ng-if="x.isAvailable" class="text-green">
+                        <i class="icon ion-checkmark-circled"></i>
+                    </div>
+                    <h2 class="text-gold">{{x.name}}</h2>
+                    <h2 class="text-gold">{{x.price}} &#8364</h2>
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>

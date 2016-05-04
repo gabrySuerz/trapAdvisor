@@ -1,161 +1,193 @@
 ﻿
-var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps']);
+var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps', 'ngStorage']);
 
-controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginModule, $ionicPopup) {
+controllerModule.controller("loginCtrl", function ($scope, $state, loginF, $ionicPopup, $sessionStorage, $localStorage, positionF) {
 
-    if (localStorage.getItem("userJesse") != null && localStorage.getItem("pwdJesse") != null) {
-        $scope.email = localStorage.getItem("userJesse")
-        $scope.password = localStorage.getItem("pwdJesse")
-    }
+    delete $localStorage.stores
+    delete $sessionStorage.session
 
     $scope.doLogin = function (email, password) {
-        loginModule.loginFx(email, password)
+        loginF.loginFx(email, password)
             .success(function (response) {
                 if (response.success != true) {
-                    $ionicPopup.alert({
-                        title: 'Error ' + response.errorCode,
-                        template: response.errorMessage
-                    })
+                    if (response.errorCode == 200) {
+                        $ionicPopup.alert({
+                            title: 'Credenziali invalide',
+                            template: 'Controllare le credenziali e riprova ad effettuare il login'
+                        })
+                    }
                 } else {
                     $scope.user = response.data;
-                    /*if (sessionStorage.getItem("session") == null) {
-                        sessionStorage.setItem("session", $scope.user.session)
-                    } else {
-                        return sessionStorage.getItem("session")
-                    }
-                    localStorage.setItem("userJesse", email)
-                    localStorage.setItem("pwdJesse", password)*/
-                    localStorage.setItem("session",$scope.user.session)
+                    $sessionStorage.session = $scope.user.session
+                    positionF.posFx().then(function (position) {
+                        $localStorage.coords = {
+                            lat: position.coords.latitude,
+                            long: position.coords.longitude
+                        }
+                    }, function (err) {
+                        $localStorage.coords = {
+                            lat: 37.2756583,
+                            long: -104.6560543
+                        }
+                    })
                     $state.go('top.map');
                 }
             }).error(function (response) {
-                $ionicPopup.alert({
-                    title: 'Errore di connessione',
-                    template: 'Accendi la rete dati e riprova ad effettuare il login'
-                })
+                if (response.errorCode == 403) {
+                    $ionicPopup.alert({
+                        title: 'Connessione al server',
+                        template: 'Il server potrebbe essere non raggiungibile riprova più tardi'
+                    })
+                } else {
+                    $ionicPopup.alert({
+                        title: 'Errore di connessione',
+                        template: 'Attivare la rete dati e riprova ad effettuare il login'
+                    })
+                }
             }).then(function (response) {
             })
+    }
+})
+
+controllerModule.controller('barCtrl', function ($scope, $stateParams, $state, $rootScope) {
+
+    $scope.panel = true
+
+    $scope.open = function () {
+        $scope.panel = !$scope.panel
+    }
+
+    $scope.foursquare = function () {
+        $state.go('fourLogin')
+    }
+
+    $rootScope.$ionicGoBack = function () {
+        $state.go('top.map')
+    };
+
+    $scope.logout = function () {
+        $state.go('login')
     }
 
 })
 
-controllerModule.controller('mapCtrl', function ($scope, $state, $stateParams, $http, uiGmapGoogleMapApi, dataModule) {
+controllerModule.controller('mapCtrl', function ($scope, $state, $localStorage, uiGmapGoogleMapApi, dataF, mapService, markersF) {
 
     var url = "http://its-bitrace.herokuapp.com/api/v2/stores/"
-    var data = localStorage.getItem("stores")
-    console.log(data)
-    /*if (data != null) {
+    $scope.data = $localStorage.stores
+    if ($scope.data != null) {
         $scope.markers = []
-        for (var i = 0; i < data.length; i++) {
-            $scope.markers.push({
-                id: data[i].guid,
-                coords: {
-                    latitude: data[i].latitude,
-                    longitude: data[i].longitude
-                },
-                options: {
-                    draggable: true,
-                    labelVisible: false,
-                    labelContent: data[i].address
-                },
-                title: data[i].name
-            })
-        }
-        console.log($scope.markers)*/
-    //} else {
-        dataModule.dataFx(url)
+        $scope.markers = markersF.markersFx($scope.data)
+    } else {
+        dataF.dataFx(url)
             .success(function (response) {
+                $scope.data = response.data
+                $scope.markers = markersF.markersFx($scope.data)
+                $localStorage.stores = $scope.data
             }).error(function (response) {
                 console.log(response);
-                return
             }).then(function (response) {
-                var stores = response.data.data;
-                localStorage.setItem("stores", angular.toJson(stores))
-                $scope.markers = []
-                for (var i = 0; i < stores.length; i++) {
-                    $scope.markers.push({
-                        id: stores[i].guid,
+
+            })
+    }
+
+    $scope.map = mapService.map
+
+    $scope.options = mapService.options
+
+    $scope.windowOptions = mapService.windowOptions
+
+    $scope.url = function (guid) {
+        $localStorage.actual = guid
+        $state.go('tab.details')
+    }
+
+})
+
+controllerModule.controller('detailsCtrl', function ($scope, $localStorage, dataF, fourSquareF) {
+
+    if ($localStorage.store != null) {
+        var data = $localStorage.store
+        if (data.guid == $localStorage.actual) {
+            $scope.store = data
+            $scope.fourSquareF = fourSquareF.valFx($scope.store)
+        }
+        else {
+            dataF.dataFx("http://its-bitrace.herokuapp.com/api/v2/stores/" + $localStorage.actual)
+                .success(function (response) {
+                    $scope.store = response.data
+                    console.log($scope.store)
+                    $localStorage.store = {}
+                    $localStorage.store = $scope.store
+                    $scope.marker = {
+                        id: $scope.store.id,
                         coords: {
-                            latitude: stores[i].latitude,
-                            longitude: stores[i].longitude
+                            latitude: $scope.store.latitude,
+                            longitude: $scope.store.longitude
                         },
                         options: {
-                            draggable: true,
-                            labelVisible: false,
-                            labelContent: stores[i].address
+                            draggable: false,
+                            labelVisible: false
                         },
-                        title: stores[i].name
-                    })
-                }
-            })
-   // }
+                        title: $scope.store.name
+                    }
+                    $scope.map = {
+                        center: {
+                            latitude: $scope.store.latitude,
+                            longitude: $scope.store.longitude
+                        },
+                        zoom: 7
+                    }
+                    $scope.fourSquareF=fourSquareF.valFx($scope.store)
+                }).error(function (response) {
+                    console.log(response);
+                }).then(function (response) {
 
-    $scope.map = {
-        center: {
-            latitude: 37.2756583,
-            longitude: -104.6560543
-        },
-        zoom: 2
+                });
+        }
+    } else {
+        dataF.dataFx("http://its-bitrace.herokuapp.com/api/v2/stores/" + $localStorage.actual)
+            .success(function (response) {
+                $scope.store = response.data
+                $localStorage.store = {}
+                $localStorage.store = $scope.store
+                marker = {
+                    id: $scope.store.id,
+                    coords: {
+                        latitude: $scope.store.latitude,
+                        longitude: $scope.store.longitude
+                    },
+                    options: {
+                        draggable: false,
+                        labelVisible: false
+                    },
+                    title: $scope.store.name
+                }
+                $scope.map = {
+                    center: {
+                        latitude: $scope.store.latitude,
+                        longitude: $scope.store.longitude
+                    },
+                    zoom: 7
+                }
+                $scope.fourSquareF = fourSquareF.valFx($scope.store)
+            }).error(function (response) {
+                console.log(response);
+            }).then(function (response) {
+            });
     }
 
     $scope.options = {
         scrollwheel: false
     }
-
-    $scope.windowOptions = {
-        visible: false
-    }
-
-    $scope.url = function (guid) {
-        $state.go('tab.detail', { guid: guid })
-    }
-
-}).controller('listCtrl', function ($scope, $stateParams, $http, dataModule) {
-    var url = "http://its-bitrace.herokuapp.com/api/v2/stores/"
-    /*var data = localStorage.getItem("stores")
-    if (data != null) {
-        $scope.stores = JSON.parse(data);
-    } else {*/
-    dataModule.dataFx(url)
-        .success(function (response) {
-        }).error(function (response) {
-            console.log(response);
-        }).then(function (response) {
-            $scope.stores = response.data.data;
-            localStorage.setItem("stores", $scope.stores)
-        })
-    // }
 })
 
-controllerModule.controller('detailCtrl', function ($scope, $stateParams, dataModule, $window) {
+controllerModule.controller('fourCtrl', function ($scope, $rootScope, $ionicHistory) {
 
-    var guid = $stateParams.guid
-    var url = "http://its-bitrace.herokuapp.com/api/v2/stores/" + guid
-    var data = localStorage.getItem(guid)
-    if (data != null) {
-        $scope.store = data;
-    } else {
-        dataModule.dataFx(url)
-            .success(function (response) {
-            }).error(function (response) {
-                console.log(response);
-            }).then(function (response) {
-                $scope.store = response.data.data
-                $window.localStorage.setItem($scope.store.id, $scope.store)
-            });
-    }
-    $scope.goBack = function () {
-        $state.go('top.map')
-        //? $ionicHistory()
-    }
-})
+    $scope.fourUser = "Username/Email"
+    $scope.fourPwd = "Password"
 
-controllerModule.controller('tabCtrl', function ($scope, $stateParams, $state, $rootScope) {
-
-    $scope.azienda = $stateParams.guid
-    //$ionicConfigProvider.backButton.previousTitleText(false)
     $rootScope.$ionicGoBack = function () {
-        $state.go('top.map')
+        $ionicHistory.goBack();
     };
-
 })

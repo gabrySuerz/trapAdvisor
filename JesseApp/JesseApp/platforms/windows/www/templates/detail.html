@@ -1,14 +1,16 @@
-﻿<ion-nav-bar class="bar-positive">
-    <ion-nav-back-button class="button-clear" ng-click="goBack()">
-        <i class="ion-arrow-left-c"></i> Back
-    </ion-nav-back-button>
-</ion-nav-bar>
-<ion-view class="factoryDetail">
+﻿<ion-view class="factoryDetail">
     <ion-content>
-        <div class="item item-text-wrap">
-            <img src="{{store.featured_image}}" />
-            <h1>flkjjldsjkflsdkjfsdlfkjdkfljddflksddkl</h1>
-            <!--open_date, tags, description, address, name-->
+        <div class="background-black text-gold">
+            <h3 class="text-center text-padding text-gold">{{store.name}}</h3>
+            <div class="item item-image">
+                <img src="{{store.featured_image}}" />
+            </div>
+            <hr class="hr-style">
+            <h4 class="text-center text-gold">Description</h4>
+            <hr class="hr-style">
+            <p class="text-padding">
+                {{store.description}}
+            </p>
         </div>
     </ion-content>
 </ion-view>

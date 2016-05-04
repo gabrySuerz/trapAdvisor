@@ -1,9 +1,13 @@
 ﻿<ion-view class="listview">
     <ion-content>
         <div ng-repeat="store in markers">
-            <div class="item item-text-wrap" ng-click="url(store.id)">
-                {{store.title}}<br />
-                {{store.options.labelContent}}
+            <div class="list background-black">
+                <div class="item item-icon-right border-style text-gold" ng-click="url(store.id)">
+                    <i class="icon ion-information-circled"></i>
+                    <h2 class="titleAzienda">{{store.title}}</h2><br />
+                    {{data[$index].address}}<br />
+                    {{data[$index].phone}}<br />
+                </div>
             </div>
         </div>
     </ion-content>

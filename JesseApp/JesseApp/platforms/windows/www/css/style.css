@@ -70,7 +70,84 @@
     color: gold;
 }
 
-ion-nav-bar {
-    background-color: black;
+.bar-dark .button.button-clear {
     color: gold;
+    font-size: 15pt;
+}
+
+.popup-head {
+    background-color: black;
+    border: black;
+}
+
+.popup-title {
+    color: gold;
+}
+
+.popup-body {
+    background-color: black;
+    border: black;
+    text-align: center;
+    color: gold;
+}
+
+.popup-buttons {
+    background-color: black;
+    border: none;
+    color: gold;
+}
+
+    .popup-buttons .button {
+        background-color: gold;
+        color: black;
+    }
+
+        .popup-buttons .button.activated {
+            background-color: darkgoldenrod;
+            color: black;
+        }
+
+.iconsPosition {
+    padding-right: 4em!important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-padding {
+    padding: 20px;
+}
+
+.border-style {
+    border-bottom: solid;
+    border-width: 2px;
+}
+
+.background-black{
+    background-color: black;
+}
+
+.text-large{
+    font-size: 25px!important;
+}
+
+.text-white{
+    color: #b0aba3;
+}
+
+.text-red{
+    color: red;
+}
+
+.text-green{
+    color: green;
+}
+
+.text-gold{
+    color: goldenrod;
+}
+
+.angular-google-map-contacts{
+    height: 50%;
 }

@@ -1,12 +1,24 @@
-﻿<ion-view wiew-title="contacts">
+﻿<ion-view wiew-title="contacts" cache-view="false">
     <ion-content>
-
-        <div class="item item-text-wrap">
-            {{store.sales_person.email}}<br />
-            {{store.sales_person.last}}
-            {{store.sales_person.first}}
-            {{store.sales_person.phone}}
+        <div id="map_contacts">
+            <ui-gmap-google-map class="ng-isolate-scope angular-google-map" center="map.center" zoom="map.zoom" draggable="true" options="options">
+                <ui-gmap-marker idkey="marker.id" coords="marker.coords" options="marker.options">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
         </div>
-
+        <div class="item">
+            <h1 class="text-center text-gold text-max">
+                {{store.sales_person.first}} {{store.sales_person.last}}
+            </h1>
+            <br />
+            <h2 class="text-gold">
+                Telefona per informazioni a: <br />
+                <a ng-href="tel:{{store.phone}}">{{store.phone}}</a>
+            </h2>
+            <h2 class="text-gold">
+                Oppure invia una mail a: <br />
+                <a ng-href="mailto:{{store.sales_person.email}}">{{store.sales_person.email}}</a>
+            </h2>
+        </div>
     </ion-content>
 </ion-view>

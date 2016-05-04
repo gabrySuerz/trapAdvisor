@@ -4,7 +4,18 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "package.appxmanifest": {
+                "parents": {
+                    "/Package/Capabilities": [
+                        {
+                            "xml": "<DeviceCapability Name=\"location\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
     },
     "installed_plugins": {
         "cordova-plugin-device": {
@@ -21,6 +32,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "ionic-blankapp"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "jesseApp"
         }
     },
     "dependent_plugins": {},
@@ -79,6 +93,44 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/src/windows/GeolocationProxy.js",
+            "id": "cordova-plugin-geolocation.GeolocationProxy",
+            "pluginId": "cordova-plugin-geolocation",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/Coordinates.js",
+            "id": "cordova-plugin-geolocation.Coordinates",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "Coordinates"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+            "id": "cordova-plugin-geolocation.PositionError",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "PositionError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/Position.js",
+            "id": "cordova-plugin-geolocation.Position",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "Position"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/geolocation.js",
+            "id": "cordova-plugin-geolocation.geolocation",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "navigator.geolocation"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -86,6 +138,7 @@
         "cordova-plugin-console": "1.0.2",
         "cordova-plugin-whitelist": "1.2.1",
         "cordova-plugin-statusbar": "2.1.2",
-        "ionic-plugin-keyboard": "1.0.9"
+        "ionic-plugin-keyboard": "1.0.9",
+        "cordova-plugin-geolocation": "2.1.0"
     }
 }

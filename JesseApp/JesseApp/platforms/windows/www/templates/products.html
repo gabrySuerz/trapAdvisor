@@ -1,13 +1,56 @@
-﻿<ion-nav-bar class="bar-stable">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-</ion-nav-bar>
-<ion-view>
-    <ion-content>
-        <div class="item item-text-wrap">
-            <h2>{{store.products.name}}</h2>
-            <h2>{{store.products.price}}</h2>
-            <!--isAvailable-->
+﻿<ion-view>
+    <ion-content class="background-black">
+        <div class="list">
+            <br>
+            <h3 class="text-center text-white">Products :</h3>
+            <br />
+            <!--<div ng-repeat="x in prodotti" class="item border-style">
+                <div ng-if="!x.isAvailable" class="text-red">
+                    <a class="item item-icon-right" href="#">
+                        <i class="icon ion-close-circled"></i>
+
+                        <h2 class="text-white text-large">{{x.name}}</h2>
+
+                        <h2 class="text-gold">{{x.price}} &#8364</h2>
+                    </a>
+                </div>
+                <div ng-if="x.isAvailable" class="text-green">
+                    <a class="item item-icon-right" href="#">
+                        <i class="icon ion-checkmark-circled"></i>
+
+                        <h2 class="text-white text-large">{{x.name}}</h2>
+
+                        <h3 class="text-gold">{{x.price}} &#8364</h3>
+                    </a>
+                </div>
+            </div>-->
+            <div class="text-red">
+                <a class="item item-icon-right" href="#">
+                    <i class="icon ion-checkmark-circled"></i>
+
+                    <h2 class="text-white text-large">sint culpa</h2>
+
+                    <h3 class="text-gold">{{x.price}} &#8364</h3>
+                </a>
+            </div>
+            <div class="text-red">
+                <a class="item item-icon-right" href="#">
+                    <i class="icon ion-checkmark-circled"></i>
+
+                    <h2 class="text-white text-large">enim ipsum</h2>
+
+                    <h3 class="text-gold">{{x.price}} &#8364</h3>
+                </a>
+            </div>
+            <div class="text-green">
+                <a class="item item-icon-right" href="#">
+                    <i class="icon ion-checkmark-circled"></i>
+
+                    <h2 class="text-white text-large">eu est</h2>
+
+                    <h3 class="text-gold">{{x.price}} &#8364</h3>
+                </a>
+            </div>
         </div>
     </ion-content>
 </ion-view>

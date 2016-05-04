@@ -4309,7 +4309,7 @@ a.subdued {
 
 .bar .back-button.hide,
 .bar .buttons .hide {
-  display: none; }
+  display: unset; }
 
 .nav-bar-tabs-top .bar {
   background-image: none; }

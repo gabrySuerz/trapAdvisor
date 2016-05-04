@@ -1,4 +1,9 @@
-﻿<ion-tabs class="tabs-dark tabs-icon-top">
+﻿<ion-nav-bar class="bar-dark">
+    <ion-nav-buttons side="right">
+        <button class="button back-button hide buttons button-clear header-item" ng-click="logout()"><span class="ion-log-out"> Logout</span></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+<ion-tabs class="tabs-dark tabs-icon-top">
     <ion-tab title="Azienda" icon-off="ion-map" icon-on="ion-map" href="#/top/map">
         <ion-nav-view name="top-map"></ion-nav-view>
     </ion-tab>

@@ -1,8 +1,15 @@
-﻿<ion-view class="factoryDetail">
+﻿<ion-view class="factoryDetail" cache-view="false">
     <ion-content>
-        <div class="item item-text-wrap">
-            <img src="{{store.featured_image}}" />
-            <!--open_date, tags, description, address, name-->
+        <div class="text-gold">
+            <h3 class="text-center text-padding text-gold">
+                {{store.name | capitalize}}
+            </h3>
+            <div class="item item-image text-padding">
+                <img src="{{store.featured_image}}" />
+            </div>
+            <p class="text-padding">
+                {{store.description}}
+            </p>
         </div>
     </ion-content>
 </ion-view>
