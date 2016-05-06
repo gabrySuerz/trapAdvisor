@@ -67,7 +67,7 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'tab-products': {
                     templateUrl: 'templates/products.html',
-                    controller: ''
+                    controller: 'detailsCtrl'
                 }
             }
         }).state('tab.contacts', {

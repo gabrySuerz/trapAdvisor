@@ -79,6 +79,25 @@ jesseApp.factory('positionF', ['$http', '$stateParams', '$cordovaGeolocation', f
     }
 }])
 
+jesseApp.factory('markerF', function () {
+    return {
+        markFx: function (result) {
+            return {
+                id: 0,
+                coords: {
+                    latitude: result.latitude,
+                    longitude: result.longitude
+                },
+                options: {
+                    draggable: false,
+                    labelVisible: false
+                },
+                title: result.name
+            }
+        }
+    }
+})
+
 jesseApp.factory('fourSquareF', ['$http', function ($http) {
     return {
         valFx: function (place) {

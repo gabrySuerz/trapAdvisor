@@ -1,5 +1,5 @@
 ﻿
-var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps', 'ngStorage']);
+var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps', 'ngStorage', 'angular-advanced-searchbox']);
 
 controllerModule.controller("loginCtrl", function ($scope, $state, loginF, $ionicPopup, $sessionStorage, $localStorage, positionF) {
 
@@ -104,13 +104,21 @@ controllerModule.controller('mapCtrl', function ($scope, $state, $localStorage, 
 
 })
 
-controllerModule.controller('detailsCtrl', function ($scope, $localStorage, dataF, fourSquareF) {
+controllerModule.controller('detailsCtrl', function ($scope, $localStorage, dataF, fourSquareF,markerF, uiGmapGoogleMapApi) {
 
     if ($localStorage.store != null) {
         var data = $localStorage.store
         if (data.guid == $localStorage.actual) {
             $scope.store = data
             $scope.fourSquareF = fourSquareF.valFx($scope.store)
+            $scope.marker = markerF.markFx($scope.store)
+            $scope.map = {
+                center: {
+                    latitude: $scope.store.latitude,
+                    longitude: $scope.store.longitude
+                },
+                zoom: 6
+            }
         }
         else {
             dataF.dataFx("http://its-bitrace.herokuapp.com/api/v2/stores/" + $localStorage.actual)
@@ -119,24 +127,13 @@ controllerModule.controller('detailsCtrl', function ($scope, $localStorage, data
                     console.log($scope.store)
                     $localStorage.store = {}
                     $localStorage.store = $scope.store
-                    $scope.marker = {
-                        id: $scope.store.id,
-                        coords: {
-                            latitude: $scope.store.latitude,
-                            longitude: $scope.store.longitude
-                        },
-                        options: {
-                            draggable: false,
-                            labelVisible: false
-                        },
-                        title: $scope.store.name
-                    }
+                    $scope.marker = markerF.markFx($scope.store)
                     $scope.map = {
                         center: {
                             latitude: $scope.store.latitude,
                             longitude: $scope.store.longitude
                         },
-                        zoom: 7
+                        zoom: 6
                     }
                     $scope.fourSquareF=fourSquareF.valFx($scope.store)
                 }).error(function (response) {
@@ -151,24 +148,13 @@ controllerModule.controller('detailsCtrl', function ($scope, $localStorage, data
                 $scope.store = response.data
                 $localStorage.store = {}
                 $localStorage.store = $scope.store
-                marker = {
-                    id: $scope.store.id,
-                    coords: {
-                        latitude: $scope.store.latitude,
-                        longitude: $scope.store.longitude
-                    },
-                    options: {
-                        draggable: false,
-                        labelVisible: false
-                    },
-                    title: $scope.store.name
-                }
+                $scope.marker = markerF.markFx($scope.store)
                 $scope.map = {
                     center: {
                         latitude: $scope.store.latitude,
                         longitude: $scope.store.longitude
                     },
-                    zoom: 7
+                    zoom: 6
                 }
                 $scope.fourSquareF = fourSquareF.valFx($scope.store)
             }).error(function (response) {
@@ -180,6 +166,11 @@ controllerModule.controller('detailsCtrl', function ($scope, $localStorage, data
     $scope.options = {
         scrollwheel: false
     }
+
+    $scope.windowOptions = {
+        visible: false
+    }
+
 })
 
 controllerModule.controller('fourCtrl', function ($scope, $rootScope, $ionicHistory) {

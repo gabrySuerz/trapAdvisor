@@ -1,6 +1,9 @@
 ﻿<ion-view class="listview">
     <ion-content>
-        <div ng-repeat="store in markers">
+        <div style="margin:5%;">
+            <input class="searchbox" type="text" ng-model="storeSearch.title" placeholder="Cerca gli store" />
+        </div>
+        <div ng-repeat="store in markers | filter: storeSearch">
             <div class="list background-black">
                 <div class="item item-icon-right border-style text-gold" ng-click="url(store.id)">
                     <i class="icon ion-information-circled"></i>
