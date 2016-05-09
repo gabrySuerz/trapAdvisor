@@ -5,8 +5,10 @@ controllerModule.controller("loginCtrl", function ($scope, $state, loginF, $ioni
 
     delete $localStorage.stores
     delete $sessionStorage.session
+    $scope.spinner = false
 
     $scope.doLogin = function (email, password) {
+        $scope.spinner = true
         loginF.loginFx(email, password)
             .success(function (response) {
                 if (response.success != true) {
@@ -46,6 +48,7 @@ controllerModule.controller("loginCtrl", function ($scope, $state, loginF, $ioni
                     })
                 }
             }).then(function (response) {
+                $scope.spinner = false
             })
     }
 
@@ -113,7 +116,7 @@ controllerModule.controller('mapCtrl', function ($scope, $state, $localStorage, 
 
 })
 
-controllerModule.controller('detailsCtrl', function ($scope, $localStorage, dataF, fourSquareF,markerF, uiGmapGoogleMapApi) {
+controllerModule.controller('detailsCtrl', function ($scope, $localStorage, dataF, fourSquareF, markerF, uiGmapGoogleMapApi) {
 
     if ($localStorage.store != null) {
         var data = $localStorage.store
@@ -144,7 +147,7 @@ controllerModule.controller('detailsCtrl', function ($scope, $localStorage, data
                         },
                         zoom: 6
                     }
-                    $scope.fourSquareF=fourSquareF.valFx($scope.store)
+                    $scope.fourSquareF = fourSquareF.valFx($scope.store)
                 }).error(function (response) {
                     console.log(response);
                 }).then(function (response) {
