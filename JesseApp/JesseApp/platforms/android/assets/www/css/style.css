@@ -1,0 +1,183 @@
+/* Empty. Add your own CSS if you like */
+
+.login {
+    background-color: transparent;
+    background-image: url(../img/login4def.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.item.item-input {
+    background-color: transparent;
+    border-radius: 1px;
+    filter: blur(0px);
+    padding-top: 2em;
+    border: none;
+}
+
+.item {
+    background-color: transparent;
+    border-radius: 1px;
+    border: none;
+}
+
+.button.button-dark {
+    background-color: #19171b;
+    filter: blur(0px);
+    margin-top: 2em;
+    height: 75px;
+}
+
+.listof {
+    border: none;
+    margin-top: 50%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.input-label {
+    color: white;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.scroll {
+    height: 100%;
+    /*background-color: black;*/
+}
+
+.angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.contentWindow {
+    text-align: center;
+}
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: darkgoldenrod;
+}
+
+.tab-item {
+    color: gold;
+}
+
+.bar-dark .button.button-clear {
+    color: gold;
+    font-size: 15pt;
+}
+
+.popup-head {
+    background-color: black;
+    border: black;
+}
+
+.popup-title {
+    color: gold;
+}
+
+.popup-body {
+    background-color: black;
+    border: black;
+    text-align: center;
+    color: gold;
+}
+
+.popup-buttons {
+    background-color: black;
+    border: none;
+    color: gold;
+}
+
+    .popup-buttons .button {
+        background-color: gold;
+        color: black;
+    }
+
+        .popup-buttons .button.activated {
+            background-color: darkgoldenrod;
+            color: black;
+        }
+
+.iconsPosition {
+    padding-right: 4em !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.titleAzienda {
+    text-align: center;
+    color: gold;
+    font-size: 20pt !important;
+}
+
+.fourSquare {
+    background-color: #0094ff;
+}
+
+.styleFour {
+    font-size: 50pt;
+    margin-left: 45%;
+    color: white;
+}
+
+.text-padding {
+    padding: 20px;
+}
+
+.text-gold {
+    color: goldenrod;
+    font-size: 15pt;
+}
+
+.text-max {
+    font-size: 20pt!important;
+}
+
+#map_contacts {
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    position: relative;
+}
+
+.text-red {
+    background-color: red;
+}
+
+.text-green {
+    background-color: green;
+}
+
+.text-white {
+    color: #b0aba3;
+}
+
+.searchbox {
+    background-color: #444;
+    color: goldenrod!important;
+    width: 100%;
+    border-radius: 3px;
+    text-align:center;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    color: goldenrod!important;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+    color: goldenrod!important;
+}
