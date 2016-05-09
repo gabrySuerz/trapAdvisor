@@ -1,18 +1,12 @@
 ﻿
-var jesseApp = angular.module('starter', ['ionic', 'controllers', 'factory']);
+var jesseApp = angular.module('starter', ['ionic', 'controllers', 'factory', 'service']);
 
 var _key = 'AIzaSyBH5mSXgLqSdmq18AUnNCKp5h65CJdj_Dk'
 
 jesseApp.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
-            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-            // for form inputs)
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-
-            // Don't remove this line unless you know what you are doing. It stops the viewport
-            // from snapping when text inputs are focused. Ionic handles this internally for
-            // a much nicer keyboard experience.
             cordova.plugins.Keyboard.disableScroll(true);
         }
         if (window.StatusBar) {
@@ -35,7 +29,7 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/top',
             abstract: true,
             templateUrl: 'templates/top.html',
-            controller: 'topCtrl'
+            controller: 'barCtrl'
         }).state('top.map', {
             url: '/map',
             views: {
@@ -59,21 +53,21 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/tab',
             abstract: true,
             templateUrl: 'templates/tabs.html',
-            controller: 'tabCtrl'
-        }).state('tab.detail', {
-            url: '/detail/:guid',
+            controller: 'barCtrl'
+        }).state('tab.details', {
+            url: '/details',
             views: {
-                'tab-detail': {
+                'tab-details': {
                     templateUrl: 'templates/detail.html',
-                    controller: 'detailCtrl'
+                    controller: 'detailsCtrl'
                 }
             }
         }).state('tab.products', {
-            url: '/products/:guid',
+            url: '/products',
             views: {
                 'tab-products': {
                     templateUrl: 'templates/products.html',
-                    controller: ''
+                    controller: 'detailsCtrl'
                 }
             }
         }).state('tab.contacts', {
@@ -81,15 +75,41 @@ jesseApp.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'tab-contacts': {
                     templateUrl: 'templates/contacts.html',
-                    controller: 'contactsCtrl'
+                    controller: 'detailsCtrl'
                 }
             }
         })
 
-    if (sessionStorage.getItem("session") != null) {
+    if (sessionStorage.session != null) {
         $urlRouterProvider.otherwise('/top/map');
     } else {
         $urlRouterProvider.otherwise('/login');
     }
 })
 
+jesseApp.config(function (uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: _key,
+        v: '3.22',
+        libraries: '',
+        language: 'it',
+    })
+})
+
+jesseApp.config(function ($ionicConfigProvider) {
+    $ionicConfigProvider.backButton.previousTitleText(false)
+});
+
+jesseApp.filter('capitalize', function () {
+    return function (x) {
+        return (!!x) ? x.charAt(0).toUpperCase() + x.substr(1).toLowerCase() : '';
+    }
+})
+
+/*
+$stateProvider
+    .state('fourLogin', {
+        url: '/fourSquare',
+        templateUrl: 'templates/fourLogin.html',
+        controller: 'fourCtrl'
+    })*/

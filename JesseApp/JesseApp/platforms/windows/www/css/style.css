@@ -48,6 +48,7 @@
 
 .scroll {
     height: 100%;
+    /*background-color: black;*/
 }
 
 .angular-google-map-container {
@@ -108,46 +109,75 @@
         }
 
 .iconsPosition {
-    padding-right: 4em!important;
+    padding-right: 4em !important;
 }
 
 .text-center {
     text-align: center;
 }
 
+.titleAzienda {
+    text-align: center;
+    color: gold;
+    font-size: 20pt !important;
+}
+
+.fourSquare {
+    background-color: #0094ff;
+}
+
+.styleFour {
+    font-size: 50pt;
+    margin-left: 45%;
+    color: white;
+}
+
 .text-padding {
     padding: 20px;
 }
 
-.border-style {
-    border-bottom: solid;
-    border-width: 2px;
+.text-gold {
+    color: goldenrod;
+    font-size: 15pt;
 }
 
-.background-black{
-    background-color: black;
+.text-max {
+    font-size: 20pt!important;
 }
 
-.text-large{
-    font-size: 25px!important;
+#map_contacts {
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    position: relative;
 }
 
-.text-white{
+.text-red {
+    background-color: red;
+}
+
+.text-green {
+    background-color: green;
+}
+
+.text-white {
     color: #b0aba3;
 }
 
-.text-red{
-    color: red;
+.searchbox {
+    background-color: #444;
+    color: goldenrod!important;
+    width: 100%;
+    border-radius: 3px;
+    text-align:center;
 }
 
-.text-green{
-    color: green;
+::-webkit-input-placeholder {
+    text-align: center;
+    color: goldenrod!important;
 }
 
-.text-gold{
-    color: goldenrod;
-}
-
-.angular-google-map-contacts{
-    height: 50%;
+:-ms-input-placeholder {
+    text-align: center;
+    color: goldenrod!important;
 }

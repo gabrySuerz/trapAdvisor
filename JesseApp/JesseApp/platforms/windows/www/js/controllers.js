@@ -1,18 +1,13 @@
 ﻿
-var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps', 'ngStorage']);
+var controllerModule = angular.module('controllers', ['uiGmapgoogle-maps', 'ngStorage', 'angular-advanced-searchbox']);
 
-controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginModule, $ionicPopup) {
+controllerModule.controller("loginCtrl", function ($scope, $state, loginF, $ionicPopup, $sessionStorage, $localStorage, positionF) {
 
-    localStorage.clear("stores")
-
-    if (localStorage.getItem("userJesse") != null && localStorage.getItem("pwdJesse") != null) {
-        console.log(localStorage.getItem())
-        $scope.email = localStorage.getItem("userJesse")
-        $scope.password = localStorage.getItem("pwdJesse")
-    }
+    delete $localStorage.stores
+    delete $sessionStorage.session
 
     $scope.doLogin = function (email, password) {
-        loginModule.loginFx(email, password)
+        loginF.loginFx(email, password)
             .success(function (response) {
                 if (response.success != true) {
                     if (response.errorCode == 200) {
@@ -23,9 +18,18 @@ controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginM
                     }
                 } else {
                     $scope.user = response.data;
-                    sessionStorage.setItem("session", $scope.user.session)
-                    localStorage.setItem("userJesse", email)
-                    localStorage.setItem("pwdJesse", password)
+                    $sessionStorage.session = $scope.user.session
+                    positionF.posFx().then(function (position) {
+                        $localStorage.coords = {
+                            lat: position.coords.latitude,
+                            long: position.coords.longitude
+                        }
+                    }, function (err) {
+                        $localStorage.coords = {
+                            lat: 37.2756583,
+                            long: -104.6560543
+                        }
+                    })
                     $state.go('top.map');
                 }
             }).error(function (response) {
@@ -45,3 +49,136 @@ controllerModule.controller("loginCtrl", function ($scope, $http, $state, loginM
     }
 })
 
+controllerModule.controller('barCtrl', function ($scope, $stateParams, $state, $rootScope) {
+
+    $scope.panel = true
+
+    $scope.open = function () {
+        $scope.panel = !$scope.panel
+    }
+
+    $scope.foursquare = function () {
+        $state.go('fourLogin')
+    }
+
+    $rootScope.$ionicGoBack = function () {
+        $state.go('top.map')
+    };
+
+    $scope.logout = function () {
+        $state.go('login')
+    }
+
+})
+
+controllerModule.controller('mapCtrl', function ($scope, $state, $localStorage, uiGmapGoogleMapApi, dataF, mapService, markersF) {
+
+    var url = "http://its-bitrace.herokuapp.com/api/v2/stores/"
+    $scope.data = $localStorage.stores
+    if ($scope.data != null) {
+        $scope.markers = []
+        $scope.markers = markersF.markersFx($scope.data)
+    } else {
+        dataF.dataFx(url)
+            .success(function (response) {
+                $scope.data = response.data
+                $scope.markers = markersF.markersFx($scope.data)
+                $localStorage.stores = $scope.data
+            }).error(function (response) {
+                console.log(response);
+            }).then(function (response) {
+
+            })
+    }
+
+    $scope.map = mapService.map
+
+    $scope.options = mapService.options
+
+    $scope.windowOptions = mapService.windowOptions
+
+    $scope.url = function (guid) {
+        $localStorage.actual = guid
+        $state.go('tab.details')
+    }
+
+})
+
+controllerModule.controller('detailsCtrl', function ($scope, $localStorage, dataF, fourSquareF,markerF, uiGmapGoogleMapApi) {
+
+    if ($localStorage.store != null) {
+        var data = $localStorage.store
+        if (data.guid == $localStorage.actual) {
+            $scope.store = data
+            $scope.fourSquareF = fourSquareF.valFx($scope.store)
+            $scope.marker = markerF.markFx($scope.store)
+            $scope.map = {
+                center: {
+                    latitude: $scope.store.latitude,
+                    longitude: $scope.store.longitude
+                },
+                zoom: 6
+            }
+        }
+        else {
+            dataF.dataFx("http://its-bitrace.herokuapp.com/api/v2/stores/" + $localStorage.actual)
+                .success(function (response) {
+                    $scope.store = response.data
+                    console.log($scope.store)
+                    $localStorage.store = {}
+                    $localStorage.store = $scope.store
+                    $scope.marker = markerF.markFx($scope.store)
+                    $scope.map = {
+                        center: {
+                            latitude: $scope.store.latitude,
+                            longitude: $scope.store.longitude
+                        },
+                        zoom: 6
+                    }
+                    $scope.fourSquareF=fourSquareF.valFx($scope.store)
+                }).error(function (response) {
+                    console.log(response);
+                }).then(function (response) {
+
+                });
+        }
+    } else {
+        dataF.dataFx("http://its-bitrace.herokuapp.com/api/v2/stores/" + $localStorage.actual)
+            .success(function (response) {
+                $scope.store = response.data
+                $localStorage.store = {}
+                $localStorage.store = $scope.store
+                $scope.marker = markerF.markFx($scope.store)
+                $scope.map = {
+                    center: {
+                        latitude: $scope.store.latitude,
+                        longitude: $scope.store.longitude
+                    },
+                    zoom: 6
+                }
+                $scope.fourSquareF = fourSquareF.valFx($scope.store)
+            }).error(function (response) {
+                console.log(response);
+            }).then(function (response) {
+            });
+    }
+
+    $scope.options = {
+        scrollwheel: false
+    }
+
+    $scope.windowOptions = {
+        visible: false
+    }
+
+})
+
+controllerModule.controller('fourCtrl', function ($scope, $rootScope, $ionicHistory) {
+
+    $scope.fourUser = "Username/Email"
+    $scope.fourPwd = "Password"
+
+    $rootScope.$ionicGoBack = function () {
+        $ionicHistory.goBack();
+    };
+})
